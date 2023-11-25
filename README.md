@@ -1,6 +1,6 @@
-# Nama Aplikasi
+# Inventory Barang (CodeIgniter 4 + Bootstrap 5)
 
-Deskripsi singkat tentang aplikasi Anda.
+
 
 ## Instalasi
 
