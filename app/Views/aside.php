@@ -53,7 +53,7 @@
           </li>
           <li class="nav-item">
             <a href="<?= base_url('master-barang/merk'); ?>" class="nav-link">
-              <i class="far fa-brands fa-bandcamp nav-icon"></i>
+              <i class="far fa-brands fa-shopify nav-icon"></i>
               <p>Merk</p>
             </a>
           </li>
@@ -77,7 +77,7 @@
       </li>
       <li class="nav-item  ">
         <a href="#" class="nav-link  ">
-          <i class="nav-icon fas fa-solid fa-people-carry-box"></i>
+          <i class="nav-icon fas fa-solid fa-handshake"></i>
 
           <p>
             Transaksi
