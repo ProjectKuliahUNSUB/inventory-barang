@@ -20,7 +20,7 @@
             background: #363062;
         }
         .bg-sidebar {
-            background: #363062;
+            background: #FAF0E6;
         }
         .nav-pills .nav-link.active,
         .nav-pills .show>.nav-link {

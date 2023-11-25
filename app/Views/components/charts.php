@@ -1,5 +1,5 @@
 <div class="col-md-6">
-    <div class="card">
+    <div class="card bg-background-component text-white">
         <div class="card-header">
             <h5 class="card-title">Monthly Recap Report</h5>
 
