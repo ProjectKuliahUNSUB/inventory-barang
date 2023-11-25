@@ -1,23 +1,20 @@
-<a href="index3.html" class="brand-link">
-  <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+<div class="brand-link bg-dark">
+  <img src="<?= base_url('assets/logo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle  "
     style="opacity: .8">
-  <span class="brand-text font-weight-light">Inventory</span>
-</a>
+  <span class="brand-text ">Inventory Barang</span>
+</div>
 
 
 <div class="sidebar">
 
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-      <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+      <img src="<?= base_url('assets/users.png') ?>" height="1500px" class="img-circle elevation-2" alt="User Image">
     </div>
     <div class="info">
-      <a href="#" class="d-block">Egie</a>
+      <div class="d-block">Bayu</div>
     </div>
   </div>
-
-
-
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <li class="nav-item">
@@ -87,17 +84,16 @@
         <ul class="nav nav-treeview">
           <li class="nav-item">
             <a href="./index.html" class="nav-link">
-              <i class="far fa-solid fa-circle-up nav-icon"></i>
+              <i class="far fa-solid fa-circle-down nav-icon"></i>
               <p>Barang Masuk </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="./index2.html" class="nav-link  ">
-              <i class="far fa-solid fa-circle-down nav-icon"></i>
+              <i class="far fa-solid fa-circle-up nav-icon"></i>
               <p>Barang Keluar</p>
             </a>
           </li>
-
         </ul>
       </li>
       <li class="nav-item  ">
@@ -111,13 +107,13 @@
         <ul class="nav nav-treeview">
           <li class="nav-item">
             <a href="./index.html" class="nav-link">
-              <i class="far  fa-solid fa-circle-up nav-icon"></i>
+              <i class="far  fa-solid fa-circle-down nav-icon"></i>
               <p>Barang Masuk </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="./index2.html" class="nav-link  ">
-              <i class="far  fa-solid fa-circle-down nav-icon"></i>
+              <i class="far  fa-solid fa-circle-up nav-icon"></i>
               <p>Barang Keluar</p>
             </a>
           </li>
@@ -131,5 +127,4 @@
       </li>
     </ul>
   </nav>
-
 </div>

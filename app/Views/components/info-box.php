@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-6 col-md-3">
+<div class="col-6  ">
     <div class="info-box bg-background-component text-white">
         <span class="info-box-icon <?php echo isset($bg) ? $bg : 'bg-info'; ?> elevation-1"><i
                 class="<?php echo isset($icon) ? $icon : 'fas fa-question'; ?>"></i></span>
