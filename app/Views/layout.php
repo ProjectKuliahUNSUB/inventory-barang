@@ -19,7 +19,9 @@
         .bg-header {
             background: #363062;
         }
-
+        .bg-sidebar {
+            background: #363062;
+        }
         .nav-pills .nav-link.active,
         .nav-pills .show>.nav-link {
             color: #fff;
@@ -53,7 +55,7 @@
             <?= view('header') ?>
         </nav>
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar bg-sidebar elevation-4">
             <?= view('aside') ?>
         </aside>
 
