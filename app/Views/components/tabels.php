@@ -1,16 +1,12 @@
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">
-            <?= $judul ?>
-        </h3>
-    </div>
+
     <div class="card-body">
         <table id="table-main" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <?php foreach ($fields as $field): ?>
                         <th>
-                            <?= $field ?>
+                            <?= ucwords(str_replace('_', ' ', $field)) ?>
                         </th>
                     <?php endforeach; ?>
                 </tr>
@@ -20,7 +16,14 @@
                     <tr>
                         <?php foreach ($fields as $field): ?>
                             <td>
-                                <?= $row[$field] ?? '' ?>
+                                <?php
+                                // Check if the field name contains the string 'harga' and if the value is numeric
+                                if (strpos($field, 'harga') !== false && is_numeric($row[$field])) {
+                                    echo 'Rp ' . number_format($row[$field], 0, '.', '.');
+                                } else {
+                                    echo $row[$field] ?? '';
+                                }
+                                ?>
                             </td>
                         <?php endforeach; ?>
                     </tr>
@@ -30,7 +33,7 @@
                 <tr>
                     <?php foreach ($fields as $field): ?>
                         <th>
-                            <?= $field ?>
+                            <?= ucwords(str_replace('_', ' ', $field)) ?>
                         </th>
                     <?php endforeach; ?>
                 </tr>

@@ -1,20 +1,17 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\M_Barang;
 use CodeIgniter\Controller;
 
 class Barang extends Controller
 {
     public function index()
     {
+        $barangModel = new M_Barang();
+        $data_table['data'] = $barangModel->getBarang();
         $data_table['judul'] = 'Barang';
-        $data_table['fields'] = ['Rendering engine', 'Browser', 'Platform(s)', 'Engine version', 'CSS grade'];
-        $data_table['data'] = [
-            ['Rendering engine' => 'Trident', 'Browser' => 'Internet Explorer 4.0', 'Platform(s)' => 'Win 95+', 'Engine version' => '4', 'CSS grade' => 'X'],
-            ['Rendering engine' => 'Other browsers', 'Browser' => 'All others', 'Platform(s)' => '-', 'Engine version' => '-', 'CSS grade' => 'U'],
-        ];
-
-
+        $data_table['fields'] = ['barang_kode', 'barang_nama', 'barang_harga', 'barang_stok', 'barang_gambar'];
         $data = [
             'title' => 'Barang',
             'content' => view('pages/barang/index', ['table' => view('components/tabels', $data_table)])

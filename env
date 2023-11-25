@@ -30,13 +30,13 @@ CI_ENVIRONMENT = development
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
-# database.default.port = 3306
+database.default.hostname = localhost
+database.default.database = inventory_barang
+database.default.username = root
+database.default.password = 
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4_test
@@ -89,7 +89,7 @@ CI_ENVIRONMENT = development
 # ENCRYPTION
 #--------------------------------------------------------------------
 
-# encryption.key =
+encryption.key = hex2bin:f6d6d77841450b0196e778b6eadc29d3456e14bd910b0a42eefa520644b272a9
 # encryption.driver = OpenSSL
 # encryption.blockSize = 16
 # encryption.digest = SHA512
