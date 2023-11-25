@@ -8,7 +8,8 @@ Deskripsi singkat tentang aplikasi Anda.
 2. Clone repositori ini ke mesin lokal Anda:
 
 ```bash
-git clone https://github.com/ProjectKuliahUNSUB/inventory-barang.git```
+    git clone https://github.com/ProjectKuliahUNSUB/inventory-barang.git
+```
 
 3. Pindah ke direktori aplikasi:
 
