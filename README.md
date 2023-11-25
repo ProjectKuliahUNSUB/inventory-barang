@@ -6,6 +6,7 @@ Deskripsi singkat tentang aplikasi Anda.
 
 1. Pastikan Anda memiliki PHP dan Composer diinstal di mesin Anda.
 2. Clone repositori ini ke mesin lokal Anda:
+
 ```bash
 git clone https://github.com/ProjectKuliahUNSUB/inventory-barang.git```
 
