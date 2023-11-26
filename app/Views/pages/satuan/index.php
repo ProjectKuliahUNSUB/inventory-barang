@@ -1,1 +1,1 @@
-Satuan
+<?= $table ?>

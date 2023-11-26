@@ -1,7 +1,7 @@
 <?php
-namespace App\Controllers;
+namespace App\Controllers\MasterBarang;
 
-use App\Models\M_Barang;
+use App\Models\M_MasterBarang\M_Barang;
 use CodeIgniter\Controller;
 
 class Barang extends Controller

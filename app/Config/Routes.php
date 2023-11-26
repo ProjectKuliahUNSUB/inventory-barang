@@ -7,10 +7,14 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Dashboard::index');
 $routes->get('/dashboard', 'Dashboard::index');
-$routes->get('/master-barang/barang', 'Barang::index');
-$routes->get('/master-barang/jenis', 'Jenis::index');
-$routes->get('/master-barang/merk', 'Merk::index');
-$routes->get('/master-barang/satuan', 'Satuan::index');
+// Master Barang
+$routes->get('/master-barang/barang', 'MasterBarang\Barang::index');
+$routes->get('/master-barang/jenis', 'MasterBarang\Jenis::index');
+$routes->get('/master-barang/merk', 'MasterBarang\Merk::index');
+$routes->get('/master-barang/satuan', 'MasterBarang\Satuan::index');
+//Customer
+$routes->get('/customer', 'Customer::index');
+
 
 
  

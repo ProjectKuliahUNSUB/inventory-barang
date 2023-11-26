@@ -1,5 +1,5 @@
-<div class="brand-link bg-dark">
-  <img src="<?= base_url('assets/logo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle  "
+<div class="brand-link  ">
+  <img src="<?= base_url('assets/logo-2.png') ?>" alt="Inventory Barang Logo" class="brand-image img-circle  "
     style="opacity: .8">
   <span class="brand-text ">Inventory Barang</span>
 </div>
@@ -35,7 +35,7 @@
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview">
+        <ul class="nav nav-treeview pl-4">
           <li class="nav-item">
             <a href="<?= base_url('master-barang/jenis'); ?>" class="nav-link">
               <i class="far fa-solid fa-list nav-icon"></i>
@@ -63,7 +63,7 @@
         </ul>
       </li>
       <li class="nav-item">
-        <a href="pages/widgets.html" class="nav-link">
+        <a href="<?= base_url('customer'); ?>" class="nav-link">
           <i class="nav-icon fas  fa-solid fa-users-line"></i>
 
           <p>
@@ -81,7 +81,7 @@
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview">
+        <ul class="nav nav-treeview pl-4">
           <li class="nav-item">
             <a href="./index.html" class="nav-link">
               <i class="far fa-solid fa-circle-down nav-icon"></i>
@@ -104,7 +104,7 @@
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview">
+        <ul class="nav nav-treeview pl-4">
           <li class="nav-item">
             <a href="./index.html" class="nav-link">
               <i class="far  fa-solid fa-circle-down nav-icon"></i>

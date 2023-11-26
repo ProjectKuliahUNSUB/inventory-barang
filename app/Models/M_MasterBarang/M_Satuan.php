@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App\Models\M_MasterBarang;
 
 use CodeIgniter\Model;
 
@@ -17,7 +17,7 @@ class M_Satuan extends Model
         $this->insert($data);
         return $this->insertID();
     }
-    public function getAllSatuan()
+    public function getSatuan()
     {
         return $this->findAll();
     }

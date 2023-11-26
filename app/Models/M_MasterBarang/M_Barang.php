@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\M_MasterBarang;
 
 use CodeIgniter\Model;
 
