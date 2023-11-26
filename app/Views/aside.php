@@ -83,13 +83,13 @@
         </a>
         <ul class="nav nav-treeview pl-4">
           <li class="nav-item">
-            <a href="./index.html" class="nav-link">
+            <a href="<?= base_url('/transaksi/barang-masuk'); ?>" class="nav-link">
               <i class="far fa-solid fa-circle-down nav-icon"></i>
               <p>Barang Masuk </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./index2.html" class="nav-link  ">
+            <a href="<?= base_url('/transaksi/barang-keluar'); ?>" class="nav-link  ">
               <i class="far fa-solid fa-circle-up nav-icon"></i>
               <p>Barang Keluar</p>
             </a>

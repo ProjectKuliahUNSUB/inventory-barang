@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card bg-sidebar">
     <div class="card-body">
         <table id="table-main" class="table table-bordered table-striped">
             <thead>
@@ -9,6 +9,10 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
+                        <th>
+                            Tools
+                        </th>
+
                     </tr>
                 <?php } else { ?>
                     <tr>
@@ -17,6 +21,10 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
+                        <th>
+                            Tools
+                        </th>
+
                     </tr>
                 <?php } ?>
 
@@ -35,7 +43,11 @@
                                 }
                                 ?>
                             </td>
+
                         <?php endforeach; ?>
+                        <td>
+                            Tools
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -47,6 +59,9 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
+                        <th>
+                            Tools
+                        </th>
                     </tr>
                 <?php } else { ?>
                     <tr>
@@ -55,6 +70,9 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
+                        <th>
+                            Tools
+                        </th>
                     </tr>
                 <?php } ?>
             </tfoot>

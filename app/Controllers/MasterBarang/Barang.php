@@ -18,4 +18,12 @@ class Barang extends Controller
         ];
         echo view('layout', $data);
     }
+    public function tambah()
+    {
+        $data = [
+            'title' => 'Barang',
+            'content' => view('pages/barang/form_tambah'),
+        ];
+        echo view('layout', $data);
+    }
 }

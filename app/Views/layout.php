@@ -21,7 +21,11 @@
         }
 
         .bg-sidebar {
-            background: #FAF0E6;
+            background: #FAF0E6 !important;
+        }
+
+        .text-header {
+            color: #FAF0E6 !important;
         }
 
         .nav-pills .nav-link.active,
@@ -40,6 +44,7 @@
 
         .bg-background-component {
             background: #363062;
+
         }
     </style>
 </head>
@@ -47,7 +52,7 @@
 <body class="hold-transition   sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <div class="preloader bg-sidebar flex-column justify-content-center align-items-center">
 
             <img class="animation__wobble" src="<?= base_url('assets/loading.svg') ?>" alt="AdminLTELogo" height="60"
                 width="60">
@@ -70,7 +75,7 @@
             </section>
         </div>
 
-        <footer class="main-footer">
+        <footer class="main-footer  bg-header">
             <?= view('footer') ?>
         </footer>
     </div>
@@ -84,7 +89,7 @@
     <script src="<?= base_url('plugins/raphael/raphael.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/jquery-mapael/jquery.mapael.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/jquery-mapael/maps/usa_states.min.js'); ?>"></script>
-    <script src="<?= base_url('plugins/chart.js/Chart.min.js'); ?>"></script>
+    <!-- <script src="<?= base_url('plugins/chart.js/Chart.min.js'); ?>"></script> -->
 
     <script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
@@ -101,14 +106,47 @@
 
     <script src="<?= base_url('dist/js/pages/dashboard2.js'); ?>"></script>
     <script>
-        $(function () {
-            $("#table-main").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["excel", "pdf", "print"]
-                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
 
+
+        $(function () {
+ 
+            $("#table-main").DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                buttons: [
+                    {
+                        text: '<i class="fas fa-solid fa-plus"></i> Tambah',
+                        className: 'bg-success',
+                        action: function (e, dt, node, config) {
+                            const currentURL = window.location.href;
+                            window.location.href = `${currentURL}/tambah`;
+                        },
+                    },
+                    {
+                        extend: 'spacer',
+                        style: 'bar'
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'bg-info',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'bg-primary',
+                        text: '<i class="fas fa-file-pdf"></i> PDF',
+                    },
+                    {
+                        extend: 'print',
+                        className: 'bg-warning',
+                        text: '<i class="fas fa-print"></i> Print',
+                    },
+                ],
+            }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
         });
+
+
     </script>
     <script>
         const currentURL = window.location.href;
@@ -147,7 +185,7 @@
         });
 
         // Set the page title to the last segment of the path in Title Case
-        document.getElementById('page-title').innerText = toTitleCase(pathSegments[pathSegments.length - 1].replace(/-/g, ' '));
+        // document.getElementById('page-title').innerText = toTitleCase(pathSegments[pathSegments.length - 1].replace(/-/g, ' '));
 
         // Generate breadcrumb items
         var breadcrumbList = document.getElementById('breadcrumb-list');
@@ -155,8 +193,10 @@
         for (var i = 0; i < pathSegments.length; i++) {
             pathSoFar += '/' + pathSegments[i];
             var listItem = document.createElement('li');
+
             var link = document.createElement('a');
             link.classList.add("breadcrumb-item")
+
             link.innerText = toTitleCase(pathSegments[i].replace(/-/g, ' '));
             listItem.appendChild(link);
             breadcrumbList.appendChild(listItem);
@@ -165,13 +205,16 @@
             if (i < pathSegments.length - 1) {
                 var separator = document.createElement('span');
                 separator.innerText = ' / ';
+                separator.classList.add("text-dark")
+
                 listItem.appendChild(separator);
                 link.classList.add("active")
-
-
+                link.classList.add("text-black")
+                link.classList.add("font-weight-bold")
             } else {
-
                 link.href = pathSoFar; // Set the actual link here
+                link.classList.add("text-black")
+
             }
         }
 
