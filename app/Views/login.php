@@ -76,7 +76,7 @@
                                     <h3>INVENTORY PROJECT </h3>
                                     <p class="mb-4">TUGAS KELOMPOK 3 PROJECT FRAMEWORK</p>
                                 </div>
-                                <form action="/dashboard" method="get">
+                                <form action="dashboard" method="get">
                                     <div class="form-group first">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" id="username">
