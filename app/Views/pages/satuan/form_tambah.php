@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="card bg-sidebar">
         <div class="card-header bg-header">
-            <h3 class="card-title text-white">Form Tambah Jenis Barang</h3>
+            <h3 class="card-title text-white">Form Tambah Satuan Barang</h3>
         </div>
         <form>
             <div class="card-body row ">

@@ -11,6 +11,7 @@ class Barang extends Controller
         $barangModel = new M_Barang();
         $data_table['data'] = $barangModel->getBarang();
         $data_table['judul'] = 'Barang';
+        $data_table['header'] = ['kode barang', 'nama barang', 'harga barang', 'stok barang', 'gambar barang'];
         $data_table['fields'] = ['barang_kode', 'barang_nama', 'barang_harga', 'barang_stok', 'barang_gambar'];
         $data = [
             'title' => 'Barang',

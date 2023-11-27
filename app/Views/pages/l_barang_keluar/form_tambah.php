@@ -1,20 +1,18 @@
 <div class="col-md-12">
     <div class="card bg-sidebar">
         <div class="card-header bg-header">
-            <h3 class="card-title text-white">Form Tambah Barang</h3>
-
+            <h3 class="card-title text-white">Quick Example</h3>
         </div>
         <form>
             <div class="card-body row ">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="barang_kode" class="form-label">Kode Barang</label>
-                        <input type="text" class="form-control" id="barang_kode" name="barang_kode">
+                        <label for="jenisbarang_id" class="form-label">Jenis Barang ID</label>
+                        <input type="text" class="form-control" id="jenisbarang_id" name="jenisbarang_id">
                     </div>
-
                     <div class="form-group">
-                        <label for="barang_nama" class="form-label">Nama Barang</label>
-                        <input type="text" class="form-control" id="barang_nama" name="barang_nama">
+                        <label for="satuan_id" class="form-label">Satuan ID</label>
+                        <input type="text" class="form-control" id="satuan_id" name="satuan_id">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -30,51 +28,33 @@
                             <option>Merk 7</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="jenisbarang_id" class="form-label">Jenis Barang </label>
-                        <!-- <input type="text" class="form-control" id="jenisbarang_id" name="jenisbarang_id"> -->
-                        <select name="jenisbarang_id" class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Satuan 1</option>
-                            <option>Satuan 2</option>
-                            <option>Satuan 3</option>
-                            <option>Satuan 4</option>
-                            <option>Satuan 5</option>
-                            <option>Satuan 6</option>
-                            <option>Satuan 7</option>
-                        </select>
-                    </div>
 
+                    <div class="form-group">
+                        <label for="barang_kode" class="form-label">Barang Kode</label>
+                        <input type="text" class="form-control" id="barang_kode" name="barang_kode">
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="satuan_id" class="form-label">Satuan</label>
-                        <!-- <input type="text" class="form-control" id="satuan_id" name="satuan_id"> -->
-                        <select name="satuan_id" class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Satuan 1</option>
-                            <option>Satuan 2</option>
-                            <option>Satuan 3</option>
-                            <option>Satuan 4</option>
-                            <option>Satuan 5</option>
-                            <option>Satuan 6</option>
-                            <option>Satuan 7</option>
-                        </select>
+                        <label for="barang_nama" class="form-label">Barang Nama</label>
+                        <input type="text" class="form-control" id="barang_nama" name="barang_nama">
                     </div>
                     <div class="form-group">
-                        <label for="barang_harga" class="form-label">Harga Barang</label>
+                        <label for="barang_harga" class="form-label">Barang Harga</label>
                         <input type="number" class="form-control" id="barang_harga" name="barang_harga">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="barang_stok" class="form-label">Stok Barang</label>
+                        <label for="barang_stok" class="form-label">Barang Stok</label>
                         <input type="number" class="form-control" id="barang_stok" name="barang_stok">
                     </div>
                     <div class="form-group">
-                        <label for="gambar_barang">Gambar Barang</label>
+                        <label for="gambar_barang">File input</label>
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="gambar_barang">
-                                <label class="custom-file-label" for="gambar_barang">Gambar Barang</label>
+                                <label class="custom-file-label" for="gambar_barang">Choose file</label>
                             </div>
                             <div class="input-group-append">
                                 <span class="input-group-text">Upload</span>

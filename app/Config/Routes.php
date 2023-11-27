@@ -27,19 +27,40 @@ $routes->get('/master-barang/jenis/delete', 'MasterBarang\Jenis::delete');
 
 
 $routes->get('/master-barang/merk', 'MasterBarang\Merk::index');
+$routes->get('/master-barang/merk/tambah', 'MasterBarang\Merk::tambah');
+$routes->get('/master-barang/merk/edit', 'MasterBarang\Merk::edit');
+$routes->get('/master-barang/merk/save', 'MasterBarang\Merk::save');
+$routes->get('/master-barang/merk/update', 'MasterBarang\Merk::update');
+$routes->get('/master-barang/merk/delete', 'MasterBarang\Merk::delete');
 
 
 $routes->get('/master-barang/satuan', 'MasterBarang\Satuan::index');
-$routes->get('/master-barang/satuan', 'MasterBarang\Satuan::tambah');
-$routes->get('/master-barang/satuan', 'MasterBarang\Satuan::edit');
-$routes->get('/master-barang/satuan', 'MasterBarang\Satuan::save');
-$routes->get('/master-barang/satuan', 'MasterBarang\Satuan::update');
-$routes->get('/master-barang/satuan', 'MasterBarang\Satuan::delete');
+$routes->get('/master-barang/satuan/tambah', 'MasterBarang\Satuan::tambah');
+$routes->get('/master-barang/satuan/edit', 'MasterBarang\Satuan::edit');
+$routes->get('/master-barang/satuan/save', 'MasterBarang\Satuan::save');
+$routes->get('/master-barang/satuan/update', 'MasterBarang\Satuan::update');
+$routes->get('/master-barang/satuan/delete', 'MasterBarang\Satuan::delete');
 //Customer
 $routes->get('/customer', 'Customer::index');
+$routes->get('/customer/tambah', 'Customer::tambah');
+$routes->get('/customer/edit', 'Customer::edit');
+$routes->get('/customer/save', 'Customer::save');
+$routes->get('/customer/update', 'Customer::update');
+$routes->get('/customer/delete', 'Customer::delete');
 //Transaksi
 $routes->get('/transaksi/barang-masuk', 'Transaksi\BarangMasuk::index');
+$routes->get('/transaksi/barang-masuk/tambah', 'Transaksi\BarangMasuk::tambah');
+$routes->get('/transaksi/barang-masuk/edit', 'Transaksi\BarangMasuk::edit');
+$routes->get('/transaksi/barang-masuk/save', 'Transaksi\BarangMasuk::save');
+$routes->get('/transaksi/barang-masuk/update', 'Transaksi\BarangMasuk::update');
+$routes->get('/transaksi/barang-masuk/delete', 'Transaksi\BarangMasuk::delete');
+
 $routes->get('/transaksi/barang-keluar', 'Transaksi\BarangKeluar::index');
+$routes->get('/transaksi/barang-keluar/tambah', 'Transaksi\BarangKeluar::tambah');
+$routes->get('/transaksi/barang-keluar/edit', 'Transaksi\BarangKeluar::edit');
+$routes->get('/transaksi/barang-keluar/save', 'Transaksi\BarangKeluar::save');
+$routes->get('/transaksi/barang-keluar/update', 'Transaksi\BarangKeluar::update');
+$routes->get('/transaksi/barang-keluar/delete', 'Transaksi\BarangKeluar::delete');
 
 
 

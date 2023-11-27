@@ -9,7 +9,7 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th>
+                        <th class="text-center">
                             Tools
                         </th>
 
@@ -21,7 +21,7 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th>
+                        <th class="text-center">
                             Tools
                         </th>
 
@@ -45,8 +45,9 @@
                             </td>
 
                         <?php endforeach; ?>
-                        <td>
-                            Tools
+                        <td class="text-center">
+                            <button class="elevation-1 btn btn-success btn-sm"><i class="fa-regular fa-pen-to-square mr-2"></i>Edit</button> | 
+                            <button class="elevation-1 btn btn-danger btn-sm"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -59,7 +60,7 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th>
+                        <th class="text-center">
                             Tools
                         </th>
                     </tr>
@@ -70,7 +71,7 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th>
+                        <th class="text-center">
                             Tools
                         </th>
                     </tr>
