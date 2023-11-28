@@ -15,6 +15,7 @@ class Merk extends Controller
     }
     public function index()
     {
+        // [DONE] index merk.
         $merkModel = new M_Merk();
         $data_table['data'] = $merkModel->getMerk();
         $data_table['header'] = ['merk_nama', 'keterangan'];
@@ -27,10 +28,27 @@ class Merk extends Controller
     }
     public function tambah()
     {
+        // [DONE] tambah barang.
         $data = [
             'title' => $this->title,
             'content' => view('pages/merk/form_tambah'),
         ];
         echo view('layout', $data);
+    }
+    public function save()
+    {
+        // [TODO] save merk.
+    }
+    public function edit()
+    {
+        // [TODO] edit merk.
+    }
+    public function update()
+    {
+        // [TODO] update merk.
+    }
+    public function delete()
+    {
+        // [TODO] delete merk.
     }
 }

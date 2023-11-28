@@ -15,6 +15,7 @@ class Satuan extends Controller
     }
     public function index()
     {
+        // [DONE] index satuan.
         $satuanModel = new M_Satuan();
         $data_table['data'] = $satuanModel->getSatuan();
         $data_table['header'] = ['satuan_nama', 'keterangan'];
@@ -27,10 +28,27 @@ class Satuan extends Controller
     }
     public function tambah()
     {
+        // [DONE] tambah barang.
         $data = [
             'title' => $this->title,
             'content' => view('pages/satuan/form_tambah'),
         ];
         echo view('layout', $data);
+    }
+    public function save()
+    {
+        // [TODO] save satuan.
+    }
+    public function edit()
+    {
+        // [TODO] edit satuan.
+    }
+    public function update()
+    {
+        // [TODO] update satuan.
+    }
+    public function delete()
+    {
+        // [TODO] delete satuan.
     }
 }

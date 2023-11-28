@@ -10,12 +10,13 @@ class Customer extends Controller
 
     public function __construct()
     {
-        
+
         $this->title = "Customer";
     }
 
     public function index()
     {
+        // [DONE] index customer.
         $barangModel = new M_Customer();
         $data_table['data'] = $barangModel->getCustomer();
         $data_table['judul'] = $this->title;
@@ -29,10 +30,27 @@ class Customer extends Controller
     }
     public function tambah()
     {
+        // [DONE] tambah barang.
         $data = [
             'title' => $this->title,
             'content' => view('pages/customer/form_tambah'),
         ];
         echo view('layout', $data);
+    }
+    public function save()
+    {
+        // [TODO] save customer.
+    }
+    public function edit()
+    {
+        // [TODO] edit customer.
+    }
+    public function update()
+    {
+        // [TODO] update customer.
+    }
+    public function delete()
+    {
+        // [TODO] delete customer.
     }
 }

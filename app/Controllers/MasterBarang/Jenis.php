@@ -16,6 +16,7 @@ class Jenis extends Controller
 
     public function index()
     {
+        // [DONE] index jenis barang.
         $jenisModel = new M_Jenis();
         $data_table['data'] = $jenisModel->getJenis();
         $data_table['header'] = ['jenis_barang', 'keterangan'];
@@ -28,10 +29,27 @@ class Jenis extends Controller
     }
     public function tambah()
     {
+        // [DONE] tambah barang.
         $data = [
             'title' => $this->title,
             'content' => view('pages/jenis/form_tambah'),
         ];
         echo view('layout', $data);
+    }
+    public function save()
+    {
+        // [TODO] save jenis barang.
+    }
+    public function edit()
+    {
+        // [TODO] edit jenis barang.
+    }
+    public function update()
+    {
+        // [TODO] update jenis barang.
+    }
+    public function delete()
+    {
+        // [TODO] delete jenis barang.
     }
 }

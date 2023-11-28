@@ -8,6 +8,9 @@ class Barang extends Controller
 {
     public function index()
     {
+        // [DONE] index barang.
+
+
         $barangModel = new M_Barang();
         $data_table['data'] = $barangModel->getBarang();
         $data_table['judul'] = 'Barang';
@@ -21,10 +24,27 @@ class Barang extends Controller
     }
     public function tambah()
     {
+        // [DONE] tambah barang.
         $data = [
             'title' => 'Barang',
             'content' => view('pages/barang/form_tambah'),
         ];
         echo view('layout', $data);
+    }
+    public function save()
+    {
+        // [TODO] save barang.
+    }
+    public function edit()
+    {
+        // [TODO] edit barang.
+    }
+    public function update()
+    {
+        // [TODO] update barang.
+    }
+    public function delete()
+    {
+        // [TODO] delete barang.
     }
 }

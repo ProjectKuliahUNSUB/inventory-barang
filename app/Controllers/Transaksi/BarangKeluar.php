@@ -15,6 +15,7 @@ class BarangKeluar extends Controller
     }
     public function index()
     {
+        // [DONE] index barang keluar.
         $jenisModel = new M_BarangKeluar();
         $data_table['data'] = $jenisModel->getBarangKeluar();
         $data_table['header'] = ['Kode Keluar', 'kode barang', 'tanggal keluar', 'tujuan', 'jumlah'];
@@ -27,11 +28,28 @@ class BarangKeluar extends Controller
     }
     public function tambah()
     {
+        // [DONE] tambah barang.
         $data = [
             'title' => $this->title,
             'content' => view('pages/t_barang_keluar/form_tambah'),
         ];
         echo view('layout', $data);
+    }
+    public function save()
+    {
+        // [TODO] save barang keluar.
+    }
+    public function edit()
+    {
+        // [TODO] edit barang keluar.
+    }
+    public function update()
+    {
+        // [TODO] update barang keluar.
+    }
+    public function delete()
+    {
+        // [TODO] delete barang keluar.
     }
 }
 

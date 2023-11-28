@@ -7,6 +7,7 @@ class Dashboard extends Controller
 {
     public function index()
     {
+        // [TODO][Dummy Data] index barang.
 
         $data1 = array(
             'bg' => 'bg-info',
