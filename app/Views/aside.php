@@ -18,7 +18,7 @@
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <li class="nav-item">
-        <a  href="<?= base_url('dashboard'); ?>" class="nav-link">
+        <a href="<?= base_url('dashboard'); ?>" class="nav-link">
           <i class="nav-icon fas  fa-solid fa-chart-line"></i>
 
           <p>
@@ -106,24 +106,34 @@
         </a>
         <ul class="nav nav-treeview pl-4">
           <li class="nav-item">
-            <a href="./index.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="far  fa-solid fa-circle-down nav-icon"></i>
               <p>Barang Masuk </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./index2.html" class="nav-link  ">
+            <a href="#" class="nav-link  ">
               <i class="far  fa-solid fa-circle-up nav-icon"></i>
               <p>Barang Keluar</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./index2.html" class="nav-link  ">
+            <a href="#" class="nav-link  ">
               <i class="far  fa-solid fa-bag-shopping nav-icon"></i>
               <p>Stok Barang</p>
             </a>
           </li>
         </ul>
+      </li>
+      <li class="nav-item">
+        <a href="<?= base_url('users'); ?>" class="nav-link">
+
+          <i class="nav-icon fas   fa-solid fa-users-gear"></i>
+          <p>
+            User
+            <!-- <span class="right badge badge-danger">New</span> -->
+          </p>
+        </a>
       </li>
     </ul>
   </nav>
