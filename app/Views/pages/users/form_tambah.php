@@ -19,7 +19,10 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="customer_alamat" class="form-label">Role</label>
-                        <input type="text" class="form-control" id="customer_notelp" name="customer_notelp">
+                        <select name="merk_id" class="form-control select2" style="width: 100%;">
+                            <option selected="selected">Admin</option>
+                            <option>Operator</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="customer_alamat" class="form-label">Password</label>
@@ -31,7 +34,7 @@
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a type="submit" href="<?=  previous_url()?>" class="btn btn-info">Cancel</a>
+                <a type="submit" href="<?= previous_url() ?>" class="btn btn-info">Cancel</a>
 
             </div>
         </form>
