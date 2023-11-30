@@ -2,10 +2,27 @@
 
 use CodeIgniter\Router\RouteCollection;
 
-/**
- * @var RouteCollection $routes
- */
-$routes->get('/', 'Dashboard::index');
+// app/Config/Routes.php
+
+// $routes->get('login', 'AuthController::login');
+// $routes->get('logout', 'AuthController::logout');
+
+// // Example routes for different controllers and actions
+// $routes->group('admin', ['filter' => 'role:admin'], function ($routes) {
+//     $routes->get('dashboard', 'AdminController::dashboard');
+//     // Add more routes for the admin section as needed
+// });
+
+// $routes->group('user', ['filter' => 'role:user'], function ($routes) {
+//     $routes->get('dashboard', 'UserController::dashboard');
+//     // Add more routes for the user section as needed
+// });
+
+// // Default route
+// $routes->setDefaultController('Home');
+$routes->get('/', 'Auth::index');
+
+
 $routes->get('/login', 'Auth::index');
 
 $routes->get('/dashboard', 'Dashboard::index');
