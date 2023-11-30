@@ -50,7 +50,7 @@
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a type="submit" class="btn btn-info">Cancel</a>
+                <a type="submit" href="<?=  previous_url()?>" class="btn btn-info">Cancel</a>
             </div>
         </form>
     </div>

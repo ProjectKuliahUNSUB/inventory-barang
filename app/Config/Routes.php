@@ -64,6 +64,13 @@ $routes->get('/customer/edit', 'Customer::edit');
 $routes->get('/customer/save', 'Customer::save');
 $routes->get('/customer/update', 'Customer::update');
 $routes->get('/customer/delete', 'Customer::delete');
+//Users
+$routes->get('/users', 'Users::index');
+$routes->get('/users/tambah', 'Users::tambah');
+$routes->get('/users/edit', 'Users::edit');
+$routes->get('/users/save', 'Users::save');
+$routes->get('/users/update', 'Users::update');
+$routes->get('/users/delete', 'Users::delete');
 //Transaksi
 $routes->get('/transaksi/barang-masuk', 'Transaksi\BarangMasuk::index');
 $routes->get('/transaksi/barang-masuk/tambah', 'Transaksi\BarangMasuk::tambah');
