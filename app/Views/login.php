@@ -5,8 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css'); ?>">
 
     <link rel="stylesheet" href="<?= base_url('fonts/icomoon/style.css'); ?>">
@@ -109,7 +108,7 @@
     <!-- <div class="row bg-white"></div> -->
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(":input").attr("autocomplete", "off");
         });
     </script>
