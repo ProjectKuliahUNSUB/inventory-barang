@@ -5,10 +5,10 @@ use CodeIgniter\Model;
 
 class M_BarangMasuk extends Model
 {
-    protected $table = 'tbl_barangmasuk';
-    protected $primaryKey = 'bm_id';
+    protected $table = 'trx_barang_masuk';
+    protected $primaryKey = 'id_bm';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['bm_id', 'bm_kode', 'barang_kode', 'customer_id', 'bm_tanggal', 'bm_jumlah', 'created_at', 'updated_at'];
+    protected $allowedFields = ['id_bm', 'kode_masuk', 'id_barang', 'tgl_masuk', 'jumlah', 'customer'];
     protected $validationRules = [];
     protected $validationMessages = [];
     protected $skipValidation = false;
@@ -19,18 +19,26 @@ class M_BarangMasuk extends Model
     }
     public function getBarangMasuk()
     {
-        return $this->findAll();
+        $this->select('trx_barang_masuk.*, tabel_barang.nama_barang, tabel_barang.satuan_barang');
+        $this->join('tabel_barang', 'tabel_barang.id_barang = trx_barang_masuk.id_barang');
+        $query = $this->get();
+
+        return $query->getResultArray();
     }
-    public function getBarangMasukById($bm_id)
+    // public function getBarangMasuk()
+    // {
+    //     return $this->findAll();
+    // }
+    public function getBarangMasukById($id_bm)
     {
-        return $this->find($bm_id);
+        return $this->find($id_bm);
     }
-    public function updateBarangMasuk($bm_id, $data)
+    public function updateBarangMasuk($id_bm, $data)
     {
-        $this->update($bm_id, $data);
+        $this->update($id_bm, $data);
     }
-    public function deleteBarangMasuk($bm_id)
+    public function deleteBarangMasuk($id_bm)
     {
-        $this->delete($bm_id);
+        $this->delete($id_bm);
     }
 }

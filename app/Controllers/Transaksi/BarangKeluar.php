@@ -17,9 +17,11 @@ class BarangKeluar extends Controller
     {
         // [DONE] index barang keluar.
         $jenisModel = new M_BarangKeluar();
+        $data_table['primaryKey'] = 'id_bk';
         $data_table['data'] = $jenisModel->getBarangKeluar();
-        $data_table['header'] = ['Kode Keluar', 'kode barang', 'tanggal keluar', 'tujuan', 'jumlah'];
-        $data_table['fields'] = ['bk_kode', 'barang_kode', 'bk_tanggal', 'bk_tujuan', 'bk_jumlah'];
+
+        $data_table['header'] = ['Kode Keluar', 'Nama barang', 'tanggal keluar', 'tujuan', 'jumlah'];
+        $data_table['fields'] = ['kode_keluar', 'nama_barang', 'tgl_keluar', 'tujuan', ['jumlah', 'satuan_barang']];
         $data = [
             'title' => $this->title,
             'content' => view('pages/t_barang_keluar/index', ['table' => view('components/tabels', $data_table)])

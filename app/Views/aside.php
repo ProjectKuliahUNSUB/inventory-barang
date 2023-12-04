@@ -27,7 +27,7 @@
           </p>
         </a>
       </li>
-      <li class="nav-item  ">
+      <!-- <li class="nav-item  ">
         <a href="#" class="nav-link  ">
           <i class="nav-icon fas fa-sharp fa-solid fa-boxes-stacked"></i>
           <p>
@@ -61,17 +61,18 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> -->
       <li class="nav-item">
-        <a href="<?= base_url('customer'); ?>" class="nav-link">
-          <i class="nav-icon fas  fa-solid fa-users-line"></i>
+        <a href="<?= base_url('master-barang'); ?>" class="nav-link">
+          <i class="nav-icon fas fa-sharp fa-solid fa-boxes-stacked"></i>
 
           <p>
-            Customer
+            Master Barang
             <!-- <span class="right badge badge-danger">New</span> -->
           </p>
         </a>
       </li>
+     
       <li class="nav-item  ">
         <a href="#" class="nav-link  ">
           <i class="nav-icon fas fa-solid fa-handshake"></i>

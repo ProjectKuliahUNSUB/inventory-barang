@@ -18,8 +18,9 @@ class BarangMasuk extends Controller
         // [DONE] index barang masuk.
         $jenisModel = new M_BarangMasuk();
         $data_table['data'] = $jenisModel->getBarangMasuk();
-        $data_table['header'] = ['kode masuk', 'kode barang', 'customer id', 'tanggal', 'jumlah'];
-        $data_table['fields'] = ['bm_kode', 'barang_kode', 'customer_id', 'bm_tanggal', 'bm_jumlah'];
+        $data_table['primaryKey'] = 'id_bm';
+        $data_table['header'] = ['kode masuk', ' Nama barang', 'customer', 'tanggal', 'jumlah'];
+        $data_table['fields'] = ['kode_masuk', 'nama_barang','customer', 'tgl_masuk', ['jumlah', 'satuan_barang']];
         $data = [
             'title' => $this->title,
             'content' => view('pages/t_barang_masuk/index', ['table' => view('components/tabels', $data_table)])

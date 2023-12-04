@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inventory | Dashboard 2</title>
+    <title>Inventory |
+        <?= $title ?? '' ?>
+    </title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -106,10 +108,16 @@
 
     <script src="<?= base_url('dist/js/pages/dashboard2.js'); ?>"></script>
     <script>
-
+        // Add custom JS here
+        $('a[rel=popover]').popover({
+            html: true,
+            trigger: 'hover',
+            placement: 'left',
+            content: function () {return '<img src="' + $(this).data('img') + '" />';}
+        });
 
         $(function () {
- 
+
             $("#table-main").DataTable({
                 responsive: true,
                 lengthChange: false,
@@ -131,24 +139,35 @@
                         extend: 'excel',
                         className: 'bg-info',
                         text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                            columns: 'th:not(:last-child)'
+                        }
                     },
                     {
                         extend: 'pdf',
                         className: 'bg-primary',
                         text: '<i class="fas fa-file-pdf"></i> PDF',
+                        exportOptions: {
+                            columns: 'th:not(:last-child)'
+                        }
                     },
                     {
                         extend: 'print',
                         className: 'bg-warning',
                         text: '<i class="fas fa-print"></i> Print',
+                        exportOptions: {
+                            columns: 'th:not(:last-child)'
+                        }
                     },
                 ],
+
+
             }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
+
         });
 
 
-    </script>
-    <script>
+
         const currentURL = window.location.href;
         const menuItems = document.querySelectorAll(".nav-item");
 
@@ -174,8 +193,8 @@
             }
         }
 
-    </script>
-    <script>
+
+
         // Get the current URL path
         var currentUrl = window.location.pathname;
 
