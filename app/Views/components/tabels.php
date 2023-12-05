@@ -1,5 +1,4 @@
 <div class="card bg-sidebar">
-
     <div class="card-body">
         <table id="table-main" class="table table-bordered table-striped">
             <thead>
@@ -51,10 +50,6 @@
                         <?php endforeach; ?>
                         <td class="text-center">
                             <?php
-                            // Assuming $controllerName is a dynamic variable or obtained dynamically
-                        
-
-                            // Get the current URL
                             $currentUrl = current_url();
                             ?>
                             <a class="btn btn-info btn-xs" rel="popover" data-img="//placehold.it/200x100"> <i
@@ -67,7 +62,6 @@
                                 <i class="fa-solid fa-trash mr-2"></i>Delete
                             </a>
                         </td>
-
                     </tr>
                 <?php endforeach; ?>
             </tbody>
