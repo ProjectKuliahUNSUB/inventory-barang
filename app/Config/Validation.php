@@ -34,8 +34,17 @@ class Validation extends BaseConfig
      * @var array<string, string>
      */
     public array $templates = [
-        'list'   => 'CodeIgniter\Validation\Views\list',
+        'list' => 'CodeIgniter\Validation\Views\list',
         'single' => 'CodeIgniter\Validation\Views\single',
+    ];
+
+
+    public $uploads = [
+        'image' => [
+            'uploaded' => 'Please choose a valid image file.',
+            'max_size' => 'The image file size must not exceed 2MB.',
+            'is_image' => 'Please choose a valid image file.',
+        ],
     ];
 
     // --------------------------------------------------------------------

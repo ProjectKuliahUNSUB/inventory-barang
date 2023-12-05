@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 class M_User extends Model
 {
 
-    protected $table = 'tbl_users';
+    protected $table = 'users';
     protected $primaryKey = 'username';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['username', 'password', 'role', 'name', 'img'];
+    protected $allowedFields = ['username', 'password', 'role', 'nama', 'img'];
     protected $validationRules = [];
     protected $validationMessages = [];
     protected $skipValidation = false;

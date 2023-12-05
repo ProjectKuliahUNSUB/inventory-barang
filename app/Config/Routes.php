@@ -37,7 +37,7 @@ $routes->get('/master-barang/delete', 'MasterBarang::delete');
 $routes->get('/users', 'Users::index');
 $routes->get('/users/tambah', 'Users::tambah');
 $routes->get('/users/edit', 'Users::edit');
-$routes->get('/users/save', 'Users::save');
+$routes->post('/users/save', 'Users::save');
 $routes->get('/users/update', 'Users::update');
 $routes->get('/users/delete', 'Users::delete');
 //Transaksi
