@@ -108,12 +108,12 @@
 
     <script src="<?= base_url('dist/js/pages/dashboard2.js'); ?>"></script>
     <script>
-        // Add custom JS here
+
         $('a[rel=popover]').popover({
             html: true,
             trigger: 'hover',
             placement: 'left',
-            content: function () {return '<img src="' + $(this).data('img') + '" />';}
+            content: function () {return '<img style="width: 200px !important; height: 250px !important;" alt="..." class=" rounded"  src="' + $(this).data('img') + '" />';}
         });
 
         $(function () {
@@ -195,49 +195,55 @@
 
 
 
-        // Get the current URL path
+
         var currentUrl = window.location.pathname;
 
-        // Split the path into segments
+
         var pathSegments = currentUrl.split('/').filter(function (segment) {
             return segment !== '';
         });
 
-        // Set the page title to the last segment of the path in Title Case
-        // document.getElementById('page-title').innerText = toTitleCase(pathSegments[pathSegments.length - 1].replace(/-/g, ' '));
 
-        // Generate breadcrumb items
+
+
+
         var breadcrumbList = document.getElementById('breadcrumb-list');
         var pathSoFar = '';
+
         for (var i = 0; i < pathSegments.length; i++) {
+
+            if (pathSegments[i].includes('public') || pathSegments[i].includes('index.php')) {
+                continue;
+            }
+
             pathSoFar += '/' + pathSegments[i];
             var listItem = document.createElement('li');
 
             var link = document.createElement('a');
-            link.classList.add("breadcrumb-item")
+            link.classList.add("breadcrumb-item");
 
             link.innerText = toTitleCase(pathSegments[i].replace(/-/g, ' '));
             listItem.appendChild(link);
             breadcrumbList.appendChild(listItem);
 
-            // Add a separator after each breadcrumb item except the last one
+
             if (i < pathSegments.length - 1) {
                 var separator = document.createElement('span');
                 separator.innerText = ' / ';
-                separator.classList.add("text-dark")
-
+                separator.classList.add("text-gray");
+                separator.classList.add("font-weight-bold");
                 listItem.appendChild(separator);
-                link.classList.add("active")
-                link.classList.add("text-black")
-                link.classList.add("font-weight-bold")
+                link.classList.add("active");
+                link.classList.add("text-black");
+                link.classList.add("font-weight-bold");
             } else {
-                link.href = pathSoFar; // Set the actual link here
-                link.classList.add("text-black")
-
+                link.href = pathSoFar;
+                link.classList.add("text-black");
             }
         }
 
-        // Function to convert a string to Title Case
+
+
         function toTitleCase(str) {
             return str.replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();

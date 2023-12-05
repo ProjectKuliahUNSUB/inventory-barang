@@ -7,7 +7,7 @@ class M_User extends Model
 {
 
     protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = ['username', 'password', 'role', 'nama', 'img'];
     protected $validationRules = [];
@@ -22,16 +22,19 @@ class M_User extends Model
     {
         return $this->findAll();
     }
-    public function getUserById($users_id)
+
+
+    public function getUserById($id)
     {
-        return $this->find($users_id);
+        return $this->find($id);
     }
-    public function updateUser($users_id, $data)
+    public function updateUser($id, $data)
     {
-        $this->update($users_id, $data);
+        $this->db->table($this->table)->update($data, array('id' => $id));
     }
-    public function deleteUser($users_id)
+    public function deleteByid($id)
     {
-        $this->delete($users_id);
+        return $this->db->table($this->table)->delete(array('id' => $id));
+
     }
 }

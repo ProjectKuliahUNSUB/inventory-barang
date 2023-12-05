@@ -36,10 +36,10 @@ $routes->get('/master-barang/delete', 'MasterBarang::delete');
 //Users
 $routes->get('/users', 'Users::index');
 $routes->get('/users/tambah', 'Users::tambah');
-$routes->get('/users/edit', 'Users::edit');
+$routes->get('/users/edit/(:num)', 'Users::edit/$1');
 $routes->post('/users/save', 'Users::save');
-$routes->get('/users/update', 'Users::update');
-$routes->get('/users/delete', 'Users::delete');
+$routes->post('/users/update', 'Users::update');
+$routes->get('/users/delete/(:num)', 'Users::delete/$1');
 //Transaksi
 $routes->get('/transaksi/barang-masuk', 'Transaksi\BarangMasuk::index');
 $routes->get('/transaksi/barang-masuk/tambah', 'Transaksi\BarangMasuk::tambah');

@@ -51,9 +51,10 @@
                         <td class="text-center">
                             <?php
                             $currentUrl = current_url();
+                            $imgSrc = isset($row['img']) && !empty($row['img']) ? 'data:image/png;base64,' . $row['img'] : '//placehold.it/200x250';
                             ?>
-                            <a class="btn btn-info btn-xs" rel="popover" data-img="//placehold.it/200x100"> <i
-                                    class="fa-solid fa-image mr-2"></i>Image</a> |
+                            <a class="btn btn-info btn-xs" rel="popover" data-img="<?= $imgSrc ?>"><i
+                                    class="fa-solid fa-image "></i></a> |
                             <a href="<?= esc($currentUrl . '/edit/' . $row[$primaryKey]) ?>" class="btn btn-success btn-xs">
                                 <i class="fa-regular fa-pen-to-square mr-2"></i>Edit
                             </a> |

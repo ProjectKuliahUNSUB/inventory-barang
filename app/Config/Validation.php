@@ -42,7 +42,7 @@ class Validation extends BaseConfig
     public $uploads = [
         'image' => [
             'uploaded' => 'Please choose a valid image file.',
-            'max_size' => 'The image file size must not exceed 2MB.',
+            'max_size' => 'The image file size must not exceed 1MB.',
             'is_image' => 'Please choose a valid image file.',
         ],
     ];

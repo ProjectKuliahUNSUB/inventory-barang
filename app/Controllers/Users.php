@@ -3,22 +3,21 @@ namespace App\Controllers;
 
 use App\Models\M_User;
 use CodeIgniter\Controller;
+use App\Libraries\Claviska\SimpleImage;
+
 
 class Users extends Controller
 {
     private $title;
-
+    protected $m_models;
     public function __construct()
     {
-
         $this->title = "User";
+        $this->m_models = new M_User();
     }
-
     public function index()
     {
-        // [DONE] index User.
-        $Modles = new M_User();
-        $data_table['data'] = $Modles->getUser();
+        $data_table['data'] = $this->m_models->getUser();
         $data_table['primaryKey'] = 'id';
         $data_table['judul'] = $this->title;
         $data_table['header'] = ['Username', 'nama', 'Role'];
@@ -31,7 +30,6 @@ class Users extends Controller
     }
     public function tambah()
     {
-        // [DONE] tambah Users.
         helper(['form']);
         $data = [
             'title' => $this->title,
@@ -42,79 +40,115 @@ class Users extends Controller
     public function save()
     {
         $validation = \Config\Services::validation();
-
-        // Set validation rules for form fields
         $validation->setRules([
             'nama' => 'required',
             'username' => 'required',
             'password' => 'required',
             'role' => 'required',
-            'image' => 'uploaded[image]|max_size[image,2048]|is_image[image]',
+            'image' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
         ]);
 
-        // Check if validation rules pass
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
-        // Handle image upload
         $image = $this->request->getFile('image');
-        $imageName = $image->getRandomName();
-        $image->move(WRITEPATH . 'uploads', $imageName);
 
-        // Convert image to base64
-        $imageData = base64_encode(file_get_contents(WRITEPATH . 'uploads/' . $imageName));
+        // Check if the uploaded file is an image
+        if ($image->isValid() && !$image->hasMoved()) {
+            // Resize the image to 200x250 pixels
+            $imagePath = $image->getTempName();
+            $simpleImage = new SimpleImage();
+            $simpleImage->fromFile($imagePath)->resize(200, 250)->toFile($imagePath);
+
+            // Move the resized image to the upload directory
+            $imageName = $image->getRandomName();
+            $image->move(WRITEPATH . 'uploads', $imageName);
+
+            $imageData = base64_encode(file_get_contents(WRITEPATH . 'uploads/' . $imageName));
+
+            $nama = $this->request->getPost('nama');
+            $username = $this->request->getPost('username');
+            $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+            $role = $this->request->getPost('role');
+
+            $userData = [
+                'nama' => $nama,
+                'img' => $imageData,
+                'username' => $username,
+                'password' => $password,
+                'role' => $role,
+            ];
+
+            $this->m_models->insert($userData);
+
+            return redirect()->to('users')->with('success', 'User created successfully.');
+        } else {
+            // Handle the case where the uploaded file is not an image
+            return redirect()->back()->withInput()->with('errors', ['image' => 'Please upload a valid image file.']);
+        }
+    }
+
+
+
+    public function edit($id)
+    {
+        helper(['form']);
+        $dataUsers = $this->m_models->getUserById($id);
+        $data = [
+            'title' => $this->title,
+            'content' => view('pages/users/form_edit', ['dataUsers' => $dataUsers]),
+        ];
+        echo view('layout', $data);
+    }
+    public function update()
+    {
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'nama' => 'required',
+            'username' => 'required',
+
+            'role' => 'required',
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+        $imageData = '';
+        $imgBase64 = $this->request->getPost('imgBase64');
+        if ($this->request->getFile('image')->isValid()) {
+            $validation->setRules([
+                'image' => 'uploaded[image]|max_size[image,2048]|is_image[image]',
+            ]);
+            $image = $this->request->getFile('image');
+            $imageName = $image->getRandomName();
+            $image->move(WRITEPATH . 'uploads', $imageName);
+            $imageData = base64_encode(file_get_contents(WRITEPATH . 'uploads/' . $imageName));
+        } elseif (!empty($imgBase64)) {
+            $imageData = $imgBase64;
+        }
         $nama = $this->request->getPost('nama');
         $username = $this->request->getPost('username');
-        $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
         $role = $this->request->getPost('role');
-
         $userData = [
             'nama' => $nama,
             'img' => $imageData,
             'username' => $username,
-            'password' => $password,
             'role' => $role,
         ];
-
-        $userModel = new M_User(); // Replace with your actual model
-        $userModel->insert($userData);
-
-        return redirect()->to('users')->with('success', 'User created successfully.');
+        $this->m_models->updateUser($this->request->getPost('id'), $userData);
+        return redirect()->to('/users')->with('success', 'User updated successfully.');
     }
-    // public function save()
-    // {
-    //     if ($this->request->getMethod() === 'post' && $this->validate(['image' => 'uploaded[image]|max_size[image,1024]'])) {
-    //         $image = $this->request->getFile('image');
-    //         $imageData = file_get_contents($image->getTempName());
-    //         $base64Image = base64_encode($imageData);
-    //         $nama = $this->request->getPost('nama');
-    //         $username = $this->request->getPost('username');
-    //         $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
-    //         $role = $this->request->getPost('role');
-    //         $Model = new M_User();
-    //         $Data = [
-    //             'name' => $nama,
-    //             'img' => $base64Image,
-    //             'username' => $username,
-    //             'password' => $password,
-    //             'role' => $role,
-    //         ];
-    //         $Model->insert($Data);
-    //     }
-    //     return redirect()->to('users');
-    // }
-
-    public function edit()
+    public function delete($id)
     {
-        // [TODO] edit Users.
-    }
-    public function update()
-    {
-        // [TODO] update Users.
-    }
-    public function delete()
-    {
-        // [TODO] delete Users.
+        $hapus = $this->m_models->deleteByid($id);
+        if ($hapus) {
+            $msg = 'Data berhasil di hapus!';
+            $status = 'success';
+        } else {
+            $msg = 'Gagal menghapus data.';
+            $status = 'errors';
+        }
+        return redirect()->to('users')->with($status, $msg);
     }
 }
