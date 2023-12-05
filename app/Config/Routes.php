@@ -4,6 +4,7 @@ use CodeIgniter\Router\RouteCollection;
 
 // app/Config/Routes.php
 $routes->get('/', 'Auth::index');
+$routes->get('/login', 'Auth::index');
 $routes->get('access-denied', 'Auth::accessDenied');
 $routes->group('auth', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->add('login', 'Auth::login');
@@ -47,26 +48,7 @@ $routes->group('operator', ['namespace' => 'App\Controllers', 'filter' => 'auth:
     // Add your Operator routes here
     $routes->add('dashboard', 'Dashboard::index');
     // // Master Barang
-    $routes->get('master-barang', 'MasterBarang::index');
-    $routes->get('master-barang/tambah', 'MasterBarang::tambah');
-    $routes->get('master-barang/edit', 'MasterBarang::edit');
-    $routes->get('master-barang/save', 'MasterBarang::save');
-    $routes->get('master-barang/update', 'MasterBarang::update');
-    $routes->get('master-barang/delete', 'MasterBarang::delete');
-    //Transaksi
-    $routes->get('transaksi/barang-masuk', 'Transaksi\BarangMasuk::index');
-    $routes->get('transaksi/barang-masuk/tambah', 'Transaksi\BarangMasuk::tambah');
-    $routes->get('transaksi/barang-masuk/edit', 'Transaksi\BarangMasuk::edit');
-    $routes->get('transaksi/barang-masuk/save', 'Transaksi\BarangMasuk::save');
-    $routes->get('transaksi/barang-masuk/update', 'Transaksi\BarangMasuk::update');
-    $routes->get('transaksi/barang-masuk/delete', 'Transaksi\BarangMasuk::delete');
 
-    $routes->get('transaksi/barang-keluar', 'Transaksi\BarangKeluar::index');
-    $routes->get('transaksi/barang-keluar/tambah', 'Transaksi\BarangKeluar::tambah');
-    $routes->get('transaksi/barang-keluar/edit', 'Transaksi\BarangKeluar::edit');
-    $routes->get('transaksi/barang-keluar/save', 'Transaksi\BarangKeluar::save');
-    $routes->get('transaksi/barang-keluar/update', 'Transaksi\BarangKeluar::update');
-    $routes->get('transaksi/barang-keluar/delete', 'Transaksi\BarangKeluar::delete');
 });
 
 

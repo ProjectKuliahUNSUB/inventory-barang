@@ -8,11 +8,15 @@ use App\Libraries\Claviska\SimpleImage;
 class Users extends Controller
 {
     private $title;
+    protected $role;
     protected $m_models;
     public function __construct()
     {
         $this->title = "User";
         $this->m_models = new M_User();
+        $this->role = strtolower(session('user')['role'] ?? '');
+        helper('image');
+        helper(['form']);
     }
     public function index()
     {
@@ -29,7 +33,6 @@ class Users extends Controller
     }
     public function tambah()
     {
-        helper(['form']);
         $data = [
             'title' => $this->title,
             'content' => view('pages/users/form_tambah'),
@@ -51,12 +54,7 @@ class Users extends Controller
         }
         $image = $this->request->getFile('image');
         if ($image->isValid() && !$image->hasMoved()) {
-            $imagePath = $image->getTempName();
-            $simpleImage = new SimpleImage();
-            $simpleImage->fromFile($imagePath)->resize(200, 250)->toFile($imagePath);
-            $imageName = $image->getRandomName();
-            $image->move(WRITEPATH . 'uploads', $imageName);
-            $imageData = base64_encode(file_get_contents(WRITEPATH . 'uploads/' . $imageName));
+            $imageData = processAndUploadImage($image);
             $nama = $this->request->getPost('nama');
             $username = $this->request->getPost('username');
             $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
@@ -69,14 +67,13 @@ class Users extends Controller
                 'role' => $role,
             ];
             $this->m_models->insert($userData);
-            return redirect()->to('users')->with('success', 'User created successfully.');
+            return redirect()->to($this->role . '/users')->with('success', 'Pengguna berhasil dibuat.');
         } else {
-            return redirect()->back()->withInput()->with('errors', ['image' => 'Please upload a valid image file.']);
+            return redirect()->back()->withInput()->with('errors', ['image' => 'Harap unggah file gambar yang valid.']);
         }
     }
     public function edit($id)
     {
-        helper(['form']);
         $dataUsers = $this->m_models->getUserById($id);
         $data = [
             'title' => $this->title,
@@ -102,12 +99,7 @@ class Users extends Controller
                 'image' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
             ]);
             $image = $this->request->getFile('image');
-            $imagePath = $image->getTempName();
-            $simpleImage = new SimpleImage();
-            $simpleImage->fromFile($imagePath)->resize(200, 250)->toFile($imagePath);
-            $imageName = $image->getRandomName();
-            $image->move(WRITEPATH . 'uploads', $imageName);
-            $imageData = base64_encode(file_get_contents(WRITEPATH . 'uploads/' . $imageName));
+            $imageData = processAndUploadImage($image);
         } elseif (!empty($imgBase64)) {
             $imageData = $imgBase64;
         }
@@ -121,18 +113,18 @@ class Users extends Controller
             'role' => $role,
         ];
         $this->m_models->updateUser($this->request->getPost('id'), $userData);
-        return redirect()->to('/users')->with('success', 'User updated successfully.');
+        return redirect()->to($this->role . '/users')->with('success', 'Pengguna berhasil diperbarui.');
     }
     public function delete($id)
     {
         $hapus = $this->m_models->deleteByid($id);
         if ($hapus) {
-            $msg = 'Data berhasil di hapus!';
+            $msg = 'Data Pengguna berhasil dihapus.';
             $status = 'success';
         } else {
-            $msg = 'Gagal menghapus data.';
+            $msg = 'Data Pengguna gagal dihapus.';
             $status = 'errors';
         }
-        return redirect()->to('users')->with($status, $msg);
+        return redirect()->to($this->role . '/users')->with($status, $msg);
     }
 }

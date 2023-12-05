@@ -12,7 +12,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-danger"  href="<?= base_url('login'); ?>" role="button">
+        <a class="nav-link text-danger" href="<?= base_url('auth/logout'); ?>" role="button">
             Logout<i class="fas ml-2  fa-solid fa-arrow-right-from-bracket"> </i>
         </a>
     </li>

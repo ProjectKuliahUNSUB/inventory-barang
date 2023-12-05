@@ -1,3 +1,4 @@
+<?php $role = strtolower(session('user')['role'] ?? ''); ?>
 <div class="col-md-12">
     <div class="card bg-sidebar">
         <div class="card-header bg-header">
@@ -5,7 +6,7 @@
             </h3>
         </div>
         <?= view('components/alerts') ?>
-        <?= form_open('/users/update', ['enctype' => 'multipart/form-data']) ?>
+        <?= form_open($role . '/users/update', ['enctype' => 'multipart/form-data']) ?>
         <input type="text" value="<?= $dataUsers['id']; ?>" name="id" hidden>
         <div class="card-body row ">
             <div class="col-sm-4">

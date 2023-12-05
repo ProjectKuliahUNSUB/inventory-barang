@@ -1,7 +1,9 @@
 <?php
 namespace App\Controllers;
+
 use App\Models\M_User;
 use CodeIgniter\Controller;
+
 class Auth extends Controller
 {
     public function index()
@@ -10,7 +12,7 @@ class Auth extends Controller
     }
     public function accessDenied()
     {
-        return view('access_denied'); 
+        return view('access_denied');
     }
     public function login()
     {
@@ -23,22 +25,33 @@ class Auth extends Controller
             $userData = [
                 'user_id' => $user['id'],
                 'username' => $user['username'],
+                'nama' => $user['nama'],
                 'role' => $user['role'],
-                
+                'img' => $user['img'],
+
+
+
             ];
             session()->set('user', $userData);
-            
+
             if ($user['role'] === 'Admin') {
-                
-                return redirect()->to('/admin/dashboard');
+
+                return redirect()->to('/admin/dashboard')->with('success', 'Berhasil Login. Selamat Datang ' . $user['nama']);
             } else {
-                
-                return redirect()->to('/operator/dashboard');
+
+                return redirect()->to('/operator/dashboard')->with('success', 'Berhasil Login. Selamat Datang ' . $user['nama']);
             }
         } else {
-            
-            
+
+
             return redirect()->to('/auth/login')->with('error', 'Invalid credentials');
         }
     }
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('login');
+    }
+
 }

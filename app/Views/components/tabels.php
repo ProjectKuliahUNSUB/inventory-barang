@@ -58,7 +58,7 @@
                             <a href="<?= esc($currentUrl . '/edit/' . $row[$primaryKey]) ?>" class="btn btn-success btn-xs">
                                 <i class="fa-regular fa-pen-to-square mr-2"></i>Edit
                             </a> |
-                            <a href="<?= esc($currentUrl . '/delete/' . $row[$primaryKey]) ?>"
+                            <a href="#" onclick="confirmDelete('<?= esc($currentUrl . '/delete/' . $row[$primaryKey]) ?>')"
                                 class="btn btn-danger btn-xs">
                                 <i class="fa-solid fa-trash mr-2"></i>Delete
                             </a>

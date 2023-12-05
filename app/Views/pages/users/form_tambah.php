@@ -1,3 +1,5 @@
+<?php $role = strtolower(session('user')['role'] ?? ''); ?>
+
 <div class="col-md-12">
     <div class="card bg-sidebar">
         <div class="card-header bg-header">
@@ -5,7 +7,7 @@
             </h3>
         </div>
         <?= view('components/alerts') ?>
-        <?= form_open('/users/save', ['enctype' => 'multipart/form-data']) ?>
+        <?= form_open($role . '/users/save', ['enctype' => 'multipart/form-data']) ?>
         <div class="card-body row ">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -18,7 +20,8 @@
                 </div>
                 <div class="form-group">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" oninput="validatePassword()" id="password"
+                        name="password" required>
                 </div>
             </div>
             <div class="col-sm-4">

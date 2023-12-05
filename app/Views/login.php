@@ -67,7 +67,7 @@
             <div class="container ">
                 <div class="row">
                     <div class="col-md-6  shadow-off">
-                        <img src="assets/logo-2.png" alt="Image" class="images-mods">
+                        <img src="<?= base_url('assets/logo-2.png')?>" alt="Image" class="images-mods">
                     </div>
                     <div class="col-md-6 contents">
                         <div class="row justify-content-center">

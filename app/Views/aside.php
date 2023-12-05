@@ -1,4 +1,7 @@
-<?php $role = strtolower(session('user')['role'] ?? ''); ?>
+<?php
+$role = strtolower(session('user')['role'] ?? '');
+$profile = session('user');
+?>
 <div class="brand-link  ">
   <img src="<?= base_url('assets/logo-2.png') ?>" alt="Inventory Barang Logo" class="brand-image img-circle  "
     style="opacity: .8">
@@ -10,10 +13,13 @@
 
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-      <img src="<?= base_url('assets/users.png') ?>" height="1500px" class="img-circle elevation-2" alt="User Image">
+      <img src="<?= 'data:image/png;base64,' . $profile['img'] ?>" height="1500px" class="img-circle elevation-2"
+        alt="User Image">
     </div>
     <div class="info">
-      <div class="d-block">Bayu</div>
+      <div class="d-block">
+        <?= $profile['nama'] ?>
+      </div>
     </div>
   </div>
   <nav class="mt-2">
