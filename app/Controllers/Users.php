@@ -5,7 +5,6 @@ use App\Models\M_User;
 use CodeIgniter\Controller;
 use App\Libraries\Claviska\SimpleImage;
 
-
 class Users extends Controller
 {
     private $title;
@@ -47,31 +46,21 @@ class Users extends Controller
             'role' => 'required',
             'image' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
         ]);
-
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
-
         $image = $this->request->getFile('image');
-
-        // Check if the uploaded file is an image
         if ($image->isValid() && !$image->hasMoved()) {
-            // Resize the image to 200x250 pixels
             $imagePath = $image->getTempName();
             $simpleImage = new SimpleImage();
             $simpleImage->fromFile($imagePath)->resize(200, 250)->toFile($imagePath);
-
-            // Move the resized image to the upload directory
             $imageName = $image->getRandomName();
             $image->move(WRITEPATH . 'uploads', $imageName);
-
             $imageData = base64_encode(file_get_contents(WRITEPATH . 'uploads/' . $imageName));
-
             $nama = $this->request->getPost('nama');
             $username = $this->request->getPost('username');
             $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
             $role = $this->request->getPost('role');
-
             $userData = [
                 'nama' => $nama,
                 'img' => $imageData,
@@ -79,18 +68,12 @@ class Users extends Controller
                 'password' => $password,
                 'role' => $role,
             ];
-
             $this->m_models->insert($userData);
-
             return redirect()->to('users')->with('success', 'User created successfully.');
         } else {
-            // Handle the case where the uploaded file is not an image
             return redirect()->back()->withInput()->with('errors', ['image' => 'Please upload a valid image file.']);
         }
     }
-
-
-
     public function edit($id)
     {
         helper(['form']);
@@ -107,10 +90,8 @@ class Users extends Controller
         $validation->setRules([
             'nama' => 'required',
             'username' => 'required',
-
             'role' => 'required',
         ]);
-
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
@@ -118,9 +99,12 @@ class Users extends Controller
         $imgBase64 = $this->request->getPost('imgBase64');
         if ($this->request->getFile('image')->isValid()) {
             $validation->setRules([
-                'image' => 'uploaded[image]|max_size[image,2048]|is_image[image]',
+                'image' => 'uploaded[image]|max_size[image,1024]|is_image[image]',
             ]);
             $image = $this->request->getFile('image');
+            $imagePath = $image->getTempName();
+            $simpleImage = new SimpleImage();
+            $simpleImage->fromFile($imagePath)->resize(200, 250)->toFile($imagePath);
             $imageName = $image->getRandomName();
             $image->move(WRITEPATH . 'uploads', $imageName);
             $imageData = base64_encode(file_get_contents(WRITEPATH . 'uploads/' . $imageName));
