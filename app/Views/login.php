@@ -5,7 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css'); ?>">
 
     <link rel="stylesheet" href="<?= base_url('fonts/icomoon/style.css'); ?>">
@@ -22,7 +23,7 @@
             height: 100vh !important;
         }
 
-        .aaaaaaaaaa {
+        .the-a {
             margin: 0;
             padding: 0;
             height: 100vh !important;
@@ -61,7 +62,7 @@
 </head>
 
 <body>
-    <div class="split-background aaaaaaaaaa">
+    <div class="split-background the-a">
         <div class="content ">
             <div class="container ">
                 <div class="row">
@@ -74,15 +75,21 @@
                                 <div class="mb-4 text-center">
                                     <h3>INVENTORY PROJECT </h3>
                                     <p class="mb-4">TUGAS KELOMPOK 3 PROJECT FRAMEWORK</p>
+                                    <?php if (isset($error)): ?>
+                                        <p style="color: red;">
+                                            <?php echo $error; ?>
+                                        </p>
+                                    <?php endif; ?>
                                 </div>
-                                <form action="dashboard" method="get">
+                                <!-- <form action="dashboard" method="get"> -->
+                                <form action="<?= base_url('auth/login') ?>" method="post">
                                     <div class="form-group first">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username">
+                                        <input type="text" class="form-control" id="username" name="username">
                                     </div>
                                     <div class="form-group last mb-4">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password">
+                                        <input type="password" class="form-control" id="password" name="password">
                                     </div>
                                     <div class="d-flex mb-5 align-items-center  ">
                                         <label class="control control--checkbox mb-0"><span class="caption ">Simpan
@@ -90,8 +97,8 @@
                                             <input type="checkbox" checked="checked" />
                                             <div class="control__indicator"></div>
                                         </label>
-                                        <span class="ml-auto"><a href="#" class="forgot-pass text-black">Lupa
-                                                Sandi</a></span>
+                                        <!-- <span class="ml-auto"><a href="#" class="forgot-pass text-black">Lupa
+                                                Sandi</a></span> -->
                                     </div>
 
                                     <input type="submit" value="Masuk" class="btn btn-block btn-primary">
@@ -108,7 +115,7 @@
     <!-- <div class="row bg-white"></div> -->
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(":input").attr("autocomplete", "off");
         });
     </script>

@@ -1,3 +1,4 @@
+<?php $role = strtolower(session('user')['role'] ?? ''); ?>
 <div class="brand-link  ">
   <img src="<?= base_url('assets/logo-2.png') ?>" alt="Inventory Barang Logo" class="brand-image img-circle  "
     style="opacity: .8">
@@ -18,7 +19,7 @@
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <li class="nav-item">
-        <a href="<?= base_url('dashboard'); ?>" class="nav-link">
+        <a href="<?= base_url($role . '/dashboard'); ?>" class="nav-link">
           <i class="nav-icon fas  fa-solid fa-chart-line"></i>
 
           <p>
@@ -37,25 +38,25 @@
         </a>
         <ul class="nav nav-treeview pl-4">
           <li class="nav-item">
-            <a href="<?= base_url('master-barang/jenis'); ?>" class="nav-link">
+            <a href="<?= base_url($role . '/master-barang/jenis'); ?>" class="nav-link">
               <i class="far fa-solid fa-list nav-icon"></i>
               <p>Jenis </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('master-barang/satuan'); ?>" class="nav-link  ">
+            <a href="<?= base_url($role . '/master-barang/satuan'); ?>" class="nav-link  ">
               <i class="far fa-solid fa-scale-unbalanced-flip nav-icon"></i>
               <p>Satuan</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('master-barang/merk'); ?>" class="nav-link">
+            <a href="<?= base_url($role . '/master-barang/merk'); ?>" class="nav-link">
               <i class="far fa-brands fa-shopify nav-icon"></i>
               <p>Merk</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('master-barang/barang'); ?>" class="nav-link">
+            <a href="<?= base_url($role . '/master-barang/barang'); ?>" class="nav-link">
               <i class="far fa-solid fa-box nav-icon"></i>
               <p>Barang</p>
             </a>
@@ -63,7 +64,7 @@
         </ul>
       </li> -->
       <li class="nav-item">
-        <a href="<?= base_url('master-barang'); ?>" class="nav-link">
+        <a href="<?= base_url($role . '/master-barang'); ?>" class="nav-link">
           <i class="nav-icon fas fa-sharp fa-solid fa-boxes-stacked"></i>
 
           <p>
@@ -72,7 +73,7 @@
           </p>
         </a>
       </li>
-     
+
       <li class="nav-item  ">
         <a href="#" class="nav-link  ">
           <i class="nav-icon fas fa-solid fa-handshake"></i>
@@ -84,13 +85,13 @@
         </a>
         <ul class="nav nav-treeview pl-4">
           <li class="nav-item">
-            <a href="<?= base_url('/transaksi/barang-masuk'); ?>" class="nav-link">
+            <a href="<?= base_url($role . '/transaksi/barang-masuk'); ?>" class="nav-link">
               <i class="far fa-solid fa-circle-down nav-icon"></i>
               <p>Barang Masuk </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('/transaksi/barang-keluar'); ?>" class="nav-link  ">
+            <a href="<?= base_url($role . '/transaksi/barang-keluar'); ?>" class="nav-link  ">
               <i class="far fa-solid fa-circle-up nav-icon"></i>
               <p>Barang Keluar</p>
             </a>
@@ -126,16 +127,16 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item">
-        <a href="<?= base_url('users'); ?>" class="nav-link">
-
-          <i class="nav-icon fas   fa-solid fa-users-gear"></i>
-          <p>
-            User
-            <!-- <span class="right badge badge-danger">New</span> -->
-          </p>
-        </a>
-      </li>
+      <?php if (strtolower(session('user')['role'] ?? '') === 'admin'): ?>
+        <li class="nav-item">
+          <a href="<?= base_url('admin/users'); ?>" class="nav-link">
+            <i class="nav-icon fas fa-solid fa-users-gear"></i>
+            <p>
+              User
+            </p>
+          </a>
+        </li>
+      <?php endif; ?>
     </ul>
   </nav>
 </div>

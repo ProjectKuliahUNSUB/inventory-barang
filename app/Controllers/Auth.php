@@ -1,14 +1,44 @@
 <?php
 namespace App\Controllers;
-
-
+use App\Models\M_User;
 use CodeIgniter\Controller;
-
 class Auth extends Controller
 {
     public function index()
     {
-        // [TODO] config auth multi role.
         echo view('login');
+    }
+    public function accessDenied()
+    {
+        return view('access_denied'); 
+    }
+    public function login()
+    {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+        $userModel = new M_User();
+        $user = $userModel->where('username', $username)
+            ->first();
+        if ($user && password_verify($password, $user['password'])) {
+            $userData = [
+                'user_id' => $user['id'],
+                'username' => $user['username'],
+                'role' => $user['role'],
+                
+            ];
+            session()->set('user', $userData);
+            
+            if ($user['role'] === 'Admin') {
+                
+                return redirect()->to('/admin/dashboard');
+            } else {
+                
+                return redirect()->to('/operator/dashboard');
+            }
+        } else {
+            
+            
+            return redirect()->to('/auth/login')->with('error', 'Invalid credentials');
+        }
     }
 }

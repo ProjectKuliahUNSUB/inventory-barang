@@ -1,5 +1,6 @@
 <?php
 namespace Config;
+
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -7,6 +8,7 @@ use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\RoleFilter;
+
 class Filters extends BaseConfig
 {
     public array $aliases = [
@@ -15,6 +17,7 @@ class Filters extends BaseConfig
         'honeypot' => Honeypot::class,
         'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'auth' => \App\Filters\Auth::class,
         // Other filters...
         // 'role' => RoleFilter::class,
     ];
