@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class M_MasterBarang extends Model
 {
-    protected $table = 'tabel_barang'; // Adjust table name accordingly
+    protected $table = 'master_barang'; // Adjust table name accordingly
     protected $primaryKey = 'id_barang';
 
     public function getMasterBarang()
