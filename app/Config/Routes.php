@@ -14,15 +14,15 @@ $routes->group('auth', ['namespace' => 'App\Controllers'], function ($routes) {
 });
 
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {
-    // Add your Admin routes here
+    // Dashboard
     $routes->add('dashboard', 'Dashboard::index');
-    // // Master Barang
+    //  Master Barang
     $routes->get('master-barang', 'MasterBarang::index');
     $routes->get('master-barang/tambah', 'MasterBarang::tambah');
-    $routes->get('master-barang/edit', 'MasterBarang::edit');
-    $routes->get('master-barang/save', 'MasterBarang::save');
-    $routes->get('master-barang/update', 'MasterBarang::update');
-    $routes->get('master-barang/delete', 'MasterBarang::delete');
+    $routes->get('master-barang/edit/(:num)', 'MasterBarang::edit/$1');
+    $routes->post('master-barang/save', 'MasterBarang::save');
+    $routes->post('master-barang/update', 'MasterBarang::update');
+    $routes->get('master-barang/delete/(:num)', 'MasterBarang::delete/$1');
     //Users
     $routes->get('users', 'Users::index');
     $routes->get('users/tambah', 'Users::tambah');
@@ -33,10 +33,10 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Adm
     //Transaksi
     $routes->get('transaksi/barang-masuk', 'Transaksi\BarangMasuk::index');
     $routes->get('transaksi/barang-masuk/tambah', 'Transaksi\BarangMasuk::tambah');
-    $routes->get('transaksi/barang-masuk/edit', 'Transaksi\BarangMasuk::edit');
-    $routes->get('transaksi/barang-masuk/save', 'Transaksi\BarangMasuk::save');
-    $routes->get('transaksi/barang-masuk/update', 'Transaksi\BarangMasuk::update');
-    $routes->get('transaksi/barang-masuk/delete', 'Transaksi\BarangMasuk::delete');
+    $routes->get('transaksi/barang-masuk/edit/(:num)', 'Transaksi\BarangMasuk::edit/$1');
+    $routes->post('transaksi/barang-masuk/save', 'Transaksi\BarangMasuk::save');
+    $routes->post('transaksi/barang-masuk/update', 'Transaksi\BarangMasuk::update');
+    $routes->get('transaksi/barang-masuk/delete/(:num)', 'Transaksi\BarangMasuk::delete/$1');
 
     $routes->get('transaksi/barang-keluar', 'Transaksi\BarangKeluar::index');
     $routes->get('transaksi/barang-keluar/tambah', 'Transaksi\BarangKeluar::tambah');

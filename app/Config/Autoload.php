@@ -49,6 +49,9 @@ class Autoload extends AutoloadConfig
         'Config' => APPPATH . 'Config',
         'Libraries' => APPPATH . 'Libraries',
         'Helpers' => APPPATH . 'Helpers',
+        'Michalsn\Uuid' => APPPATH . 'ThirdParty/uuid/src',
+        'Ramsey\Uuid' => APPPATH . 'ThirdParty/uuid-4.7.5/src',
+        'Brick\Math' => APPPATH . 'ThirdParty/math-0.12.1/src',
     ];
 
     /**

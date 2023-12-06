@@ -4,13 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class M_MasterBarang extends Model {
+class M_MasterBarang extends Model
+{
     protected $table = 'master_barang';
     protected $primaryKey = 'id_barang';
-    protected $allowedFields = ['nama_barang', 'satuan_barang', 'merk_barang', 'harga', 'keterangan','img'];
+    protected $allowedFields = ['nama_barang', 'satuan_barang', 'merk_barang', 'harga', 'keterangan', 'img'];
 
-    public function getMasterBarang() {
-        $builder = $this->db->table($this->table.' tb');
+    public function getMasterBarang()
+    {
+        $builder = $this->db->table($this->table . ' tb');
         $builder->select(
             'tb.id_barang,
             tb.nama_barang,
@@ -18,6 +20,7 @@ class M_MasterBarang extends Model {
             tb.merk_barang,
             tb.keterangan,
             tb.harga,
+            tb.img,
             COALESCE(SUM(tbm.jumlah), 0) AS jumlah_barang_masuk,
             COALESCE(SUM(tbk.jumlah), 0) AS jumlah_barang_keluar,
             COALESCE(SUM(tbm.jumlah), 0) - COALESCE(SUM(tbk.jumlah), 0) AS jumlah_barang,
@@ -26,8 +29,26 @@ class M_MasterBarang extends Model {
         );
         $builder->join('trx_barang_masuk tbm', 'tb.id_barang = tbm.id_barang', 'left');
         $builder->join('trx_barang_keluar tbk', 'tb.id_barang = tbk.id_barang', 'left');
-        $builder->groupBy('tb.id_barang, tb.nama_barang, tb.satuan_barang, tb.merk_barang, tb.keterangan, tb.harga');
+        $builder->groupBy('tb.id_barang, tb.nama_barang, tb.satuan_barang, tb.merk_barang, tb.keterangan, tb.harga,tb.img');
         $query = $builder->get();
         return $query->getResultArray();
+    }
+    public function insertBarang($data)
+    {
+        $this->insert($data);
+        return $this->insertID();
+    }
+    public function getBarangById($id)
+    {
+        return $this->find($id);
+    }
+    public function updateBarang($id, $data)
+    {
+        $this->db->table($this->table)->update($data, array($this->primaryKey => $id));
+    }
+    public function deleteByid($id)
+    {
+        return $this->db->table($this->table)->delete(array($this->primaryKey => $id));
+
     }
 }

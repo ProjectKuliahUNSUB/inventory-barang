@@ -158,6 +158,34 @@
             content: function () {return '<img style="width: 200px !important; height: 250px !important;" alt="..." class=" rounded"  src="' + $(this).data('img') + '" />';}
         });
         $(function () {
+            $("#table-main-mb").DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                buttons: [
+                    {
+                        text: '<i class="fas fa-solid fa-plus"></i> Tambah',
+                        className: 'bg-success',
+                        action: function (e, dt, node, config) {
+                            const currentURL = window.location.href;
+                            window.location.href = `${currentURL}/tambah`;
+                        },
+                    },
+                    {
+                        extend: 'spacer',
+                        style: 'bar'
+                    },
+                    {
+                        text: '<i class="fas fa-print"></i> Print Laporan',
+                        className: 'bg-warning',
+                        action: function (e, dt, node, config) {
+                            const currentURL = window.location.href;
+                            window.location.href = `<?= base_url(strtolower(session('user')['role'] ?? '') . '/laporan') ?>`;
+                        },
+                    },
+                ],
+            }).buttons().container().appendTo('#table-main-mb_wrapper .col-md-6:eq(0)');
+
             $("#table-main").DataTable({
                 responsive: true,
                 lengthChange: false,
@@ -201,7 +229,9 @@
                     },
                 ],
             }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
+
         });
+
         const currentURL = window.location.href;
         const menuItems = document.querySelectorAll(".nav-item");
         for (const menuItem of menuItems) {

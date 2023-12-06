@@ -34,41 +34,7 @@ $profile = session('user');
           </p>
         </a>
       </li>
-      <!-- <li class="nav-item  ">
-        <a href="#" class="nav-link  ">
-          <i class="nav-icon fas fa-sharp fa-solid fa-boxes-stacked"></i>
-          <p>
-            Master Barang
-            <i class="right fas fa-angle-left"></i>
-          </p>
-        </a>
-        <ul class="nav nav-treeview pl-4">
-          <li class="nav-item">
-            <a href="<?= base_url($role . '/master-barang/jenis'); ?>" class="nav-link">
-              <i class="far fa-solid fa-list nav-icon"></i>
-              <p>Jenis </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url($role . '/master-barang/satuan'); ?>" class="nav-link  ">
-              <i class="far fa-solid fa-scale-unbalanced-flip nav-icon"></i>
-              <p>Satuan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url($role . '/master-barang/merk'); ?>" class="nav-link">
-              <i class="far fa-brands fa-shopify nav-icon"></i>
-              <p>Merk</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url($role . '/master-barang/barang'); ?>" class="nav-link">
-              <i class="far fa-solid fa-box nav-icon"></i>
-              <p>Barang</p>
-            </a>
-          </li>
-        </ul>
-      </li> -->
+
       <li class="nav-item">
         <a href="<?= base_url($role . '/master-barang'); ?>" class="nav-link">
           <i class="nav-icon fas fa-sharp fa-solid fa-boxes-stacked"></i>
@@ -104,35 +70,17 @@ $profile = session('user');
           </li>
         </ul>
       </li>
-      <li class="nav-item  ">
-        <a href="#" class="nav-link  ">
-          <i class="nav-icon fas fa-print"></i>
+      <li class="nav-item">
+        <a href="<?= base_url($role . '/laporan'); ?>" class="nav-link">
+          <i class="nav-icon fas  fa-print"></i>
+
           <p>
             Laporan
-            <i class="right fas fa-angle-left"></i>
+            <!-- <span class="right badge badge-danger">New</span> -->
           </p>
         </a>
-        <ul class="nav nav-treeview pl-4">
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="far  fa-solid fa-circle-down nav-icon"></i>
-              <p>Barang Masuk </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link  ">
-              <i class="far  fa-solid fa-circle-up nav-icon"></i>
-              <p>Barang Keluar</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link  ">
-              <i class="far  fa-solid fa-bag-shopping nav-icon"></i>
-              <p>Stok Barang</p>
-            </a>
-          </li>
-        </ul>
       </li>
+
       <?php if (strtolower(session('user')['role'] ?? '') === 'admin'): ?>
         <li class="nav-item">
           <a href="<?= base_url('admin/users'); ?>" class="nav-link">

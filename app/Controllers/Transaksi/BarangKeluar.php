@@ -3,6 +3,7 @@ namespace App\Controllers\Transaksi;
 
 use App\Models\M_Transaksi\M_BarangKeluar;
 use CodeIgniter\Controller;
+use Michalsn\Uuid\Uuid;
 
 class BarangKeluar extends Controller
 {
@@ -10,12 +11,12 @@ class BarangKeluar extends Controller
 
     public function __construct()
     {
+        helper(['form']);
 
         $this->title = 'Barang Keluar';
     }
     public function index()
     {
-        // [DONE] index barang keluar.
         $jenisModel = new M_BarangKeluar();
         $data_table['primaryKey'] = 'id_bk';
         $data_table['data'] = $jenisModel->getBarangKeluar();
@@ -30,28 +31,26 @@ class BarangKeluar extends Controller
     }
     public function tambah()
     {
-        // [DONE] tambah barang.
+        $uuid = new Uuid(new \Michalsn\Uuid\Config\Uuid());
+        $uuid4 = $uuid->uuid4();
+        $string = substr($uuid4->toString(), 0, 6);
         $data = [
             'title' => $this->title,
-            'content' => view('pages/t_barang_keluar/form_tambah'),
+            'content' => view('pages/t_barang_keluar/form_tambah', ['uuid' => $string]),
         ];
         echo view('layout', $data);
     }
     public function save()
     {
-        // [TODO] save barang keluar.
     }
     public function edit()
     {
-        // [TODO] edit barang keluar.
     }
     public function update()
     {
-        // [TODO] update barang keluar.
     }
     public function delete()
     {
-        // [TODO] delete barang keluar.
     }
 }
 

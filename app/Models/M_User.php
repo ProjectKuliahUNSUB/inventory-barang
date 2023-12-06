@@ -22,8 +22,6 @@ class M_User extends Model
     {
         return $this->findAll();
     }
-
-
     public function getUserById($id)
     {
         return $this->find($id);

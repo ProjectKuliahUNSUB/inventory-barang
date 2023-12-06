@@ -1,6 +1,6 @@
 <div class="card bg-sidebar">
     <div class="card-body">
-        <table id="table-main" class="table table-bordered table-striped">
+        <table id="<?= $customclass ?? 'table-main' ?>" class="table table-bordered table-striped">
             <thead>
                 <?php if (isset($header)) { ?>
                     <tr>

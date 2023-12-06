@@ -6,22 +6,25 @@
             </h3>
         </div>
         <?= view('components/alerts') ?>
-        <?= form_open($role.'/users/save', ['enctype' => 'multipart/form-data']) ?>
+        <?= form_open($role . '/master-barang/save', ['enctype' => 'multipart/form-data']) ?>
         <div class="card-body row ">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="username" class="form-label">nama</label>
+                    <label for="username" class="form-label">Nama</label>
                     <input type="text" class="form-control" id="nama_barang" name="nama_barang">
                 </div>
                 <div class="form-group">
-                    <label for="username" class="form-label">satuan</label>
+                    <label for="username" class="form-label">Satuan</label>
                     <input type="text" class="form-control" id="satuan_barang" name="satuan_barang">
                 </div>
                 <div class="form-group">
-                    <label for="username" class="form-label">merk</label>
+                    <label for="username" class="form-label">Merk</label>
                     <input type="text" class="form-control" id="merk_barang" name="merk_barang">
                 </div>
-
+                <div class="form-group">
+                    <label for="username" class="form-label">Harga</label>
+                    <input type="number" class="form-control" id="harga" name="harga">
+                </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
@@ -33,12 +36,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="username" class="form-label">harga</label>
-                    <input type="text" class="form-control" id="harga" name="harga">
-                </div>
-                <div class="form-group">
-                    <label for="keterangan" class="form-label">keterangan</label>
-                    <textarea class="form-control" style="height: 125px;" id="keterangan" name="keterangan"></textarea>
+                    <label for="keterangan" class="form-label">Keterangan</label>
+                    <textarea class="form-control" style="height: 210px;" id="keterangan" name="keterangan"></textarea>
                 </div>
             </div>
             <div class="col-sm-4 text-center d-flex justify-content-center align-items-center">
@@ -91,18 +90,5 @@
         }
     }
 
-    function validatePassword() {
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm_password').value;
-        const passwordError = document.getElementById('passwordError');
-        const submitBtn = document.getElementById('submitBtn');
 
-        if (password !== confirmPassword) {
-            passwordError.textContent = 'Passwords do not match';
-            submitBtn.disabled = true;
-        } else {
-            passwordError.textContent = '';
-            submitBtn.disabled = false;
-        }
-    }
 </script>
