@@ -6,7 +6,7 @@
             </h3>
         </div>
         <?= view('components/alerts') ?>
-        <?= form_open($role . '/users/update', ['enctype' => 'multipart/form-data']) ?>
+        <?= form_open($role.'/users/update', ['enctype' => 'multipart/form-data']) ?>
         <input type="text" value="<?= $dataUsers['id']; ?>" name="id" hidden>
         <div class="card-body row ">
             <div class="col-sm-4">
@@ -43,7 +43,7 @@
                 <input type="text" class="form-control" id="username" value="<?= $dataUsers['img']; ?>" name="imgBase64"
                     hidden>
                 <img id="selectedImage"
-                    src="<?= isset($dataUsers['img']) && !empty($dataUsers['img']) ? 'data:image/png;base64,' . $dataUsers['img'] : '//placehold.it/200x250'; ?>"
+                    src="<?= isset($dataUsers['img']) && !empty($dataUsers['img']) ? 'data:image/png;base64,'.$dataUsers['img'] : '//placehold.it/200x250'; ?>"
                     style="width: 200px; height: 250px;" alt="..." class="img-thumbnail rounded" />
             </div>
         </div>
@@ -60,13 +60,30 @@
     function displayImage() {
         const fileInput = document.getElementById('customFile');
         const selectedImage = document.getElementById('selectedImage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
 
         const file = fileInput.files[0];
 
         if (file) {
+            loadingIndicator.style.display = 'block';
+
             const reader = new FileReader();
-            reader.onload = function (e) {
-                selectedImage.src = e.target.result;
+            reader.onloadend = function () {
+                const img = new Image();
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    canvas.width = 200;
+                    canvas.height = 250;
+
+                    ctx.drawImage(img, 0, 0, 200, 250);
+
+                    selectedImage.src = canvas.toDataURL('image/png');
+
+                    loadingIndicator.style.display = 'none';
+                };
+                img.src = reader.result;
             };
             reader.readAsDataURL(file);
         }

@@ -7,7 +7,7 @@
             </h3>
         </div>
         <?= view('components/alerts') ?>
-        <?= form_open($role . '/users/save', ['enctype' => 'multipart/form-data']) ?>
+        <?= form_open($role.'/users/save', ['enctype' => 'multipart/form-data']) ?>
         <div class="card-body row ">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -66,13 +66,30 @@
     function displayImage() {
         const fileInput = document.getElementById('customFile');
         const selectedImage = document.getElementById('selectedImage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
 
         const file = fileInput.files[0];
 
         if (file) {
+            loadingIndicator.style.display = 'block';
+
             const reader = new FileReader();
-            reader.onload = function (e) {
-                selectedImage.src = e.target.result;
+            reader.onloadend = function () {
+                const img = new Image();
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    canvas.width = 200;
+                    canvas.height = 250;
+
+                    ctx.drawImage(img, 0, 0, 200, 250);
+
+                    selectedImage.src = canvas.toDataURL('image/png');
+
+                    loadingIndicator.style.display = 'none';
+                };
+                img.src = reader.result;
             };
             reader.readAsDataURL(file);
         }

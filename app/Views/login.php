@@ -91,15 +91,15 @@
                                         <label for="password">Password</label>
                                         <input type="password" class="form-control" id="password" name="password">
                                     </div>
-                                    <div class="d-flex mb-5 align-items-center  ">
+                                    <!-- <div class="d-flex mb-5 align-items-center  ">
                                         <label class="control control--checkbox mb-0"><span class="caption ">Simpan
                                                 Sandi</span>
                                             <input type="checkbox" checked="checked" />
                                             <div class="control__indicator"></div>
                                         </label>
-                                        <!-- <span class="ml-auto"><a href="#" class="forgot-pass text-black">Lupa
-                                                Sandi</a></span> -->
-                                    </div>
+                                        <span class="ml-auto"><a href="#" class="forgot-pass text-black">Lupa
+                                                Sandi</a></span>
+                                    </div> -->
 
                                     <input type="submit" value="Masuk" class="btn btn-block btn-primary">
                                 </form>

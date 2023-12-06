@@ -5,10 +5,12 @@ use CodeIgniter\Router\RouteCollection;
 // app/Config/Routes.php
 $routes->get('/', 'Auth::index');
 $routes->get('/login', 'Auth::index');
+$routes->get('/register', 'Auth::register');
 $routes->get('access-denied', 'Auth::accessDenied');
 $routes->group('auth', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->add('login', 'Auth::login');
     $routes->add('logout', 'Auth::logout');
+    $routes->post('register', 'Auth::saveRegister');
 });
 
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {
