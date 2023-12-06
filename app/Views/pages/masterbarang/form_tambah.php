@@ -1,34 +1,108 @@
+<?php $role = strtolower(session('user')['role'] ?? ''); ?>
 <div class="col-md-12">
     <div class="card bg-sidebar">
         <div class="card-header bg-header">
-            <h3 class="card-title text-white">Form Tambah Customer</h3>
+            <h3 class="card-title text-white">Tambah Barang
+            </h3>
         </div>
-        <form>
-            <div class="card-body row ">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="customer_nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="customer_nama" name="customer_nama">
-                    </div>
-                    <div class="form-group">
-                        <label for="customer_notelp" class="form-label">No Telp</label>
-                        <input type="text" class="form-control" id="customer_notelp" name="customer_notelp">
-                    </div>
+        <?= view('components/alerts') ?>
+        <?= form_open($role.'/users/save', ['enctype' => 'multipart/form-data']) ?>
+        <div class="card-body row ">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="username" class="form-label">nama</label>
+                    <input type="text" class="form-control" id="nama_barang" name="nama_barang">
+                </div>
+                <div class="form-group">
+                    <label for="username" class="form-label">satuan</label>
+                    <input type="text" class="form-control" id="satuan_barang" name="satuan_barang">
+                </div>
+                <div class="form-group">
+                    <label for="username" class="form-label">merk</label>
+                    <input type="text" class="form-control" id="merk_barang" name="merk_barang">
                 </div>
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="customer_alamat" class="form-label">Alamat</label>
-                        <textarea class="form-control" style="height: 125px;" id="customer_alamat" name="customer_alamat"></textarea>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="customFile">Image</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="image"
+                            onchange="displayImage()">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="username" class="form-label">harga</label>
+                    <input type="text" class="form-control" id="harga" name="harga">
+                </div>
+                <div class="form-group">
+                    <label for="keterangan" class="form-label">keterangan</label>
+                    <textarea class="form-control" style="height: 125px;" id="keterangan" name="keterangan"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center d-flex justify-content-center align-items-center">
+                <img id="selectedImage" src="//placehold.it/200x250" alt="..." class="img-thumbnail rounded" />
+                <img id="loadingIndicator" src="<?= base_url('assets/loading.svg') ?>" height="60" width="60"
+                    class="img-thumbnail rounded" />
+                <div id="loadingIndicator">Loading...</div>
             </div>
 
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a type="submit" href="<?=  previous_url()?>" class="btn btn-info">Cancel</a>
-            </div>
-        </form>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a type="submit" href="<?= previous_url() ?>" class="btn btn-info">Cancel</a>
+        </div>
+        <?= form_close() ?>
     </div>
     <!-- /.card -->
 </div>
+<script defer>
+    function displayImage() {
+        const fileInput = document.getElementById('customFile');
+        const selectedImage = document.getElementById('selectedImage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        const file = fileInput.files[0];
+
+        if (file) {
+            loadingIndicator.style.display = 'block';
+
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                const img = new Image();
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    canvas.width = 200;
+                    canvas.height = 250;
+
+                    ctx.drawImage(img, 0, 0, 200, 250);
+
+                    selectedImage.src = canvas.toDataURL('image/png');
+
+                    loadingIndicator.style.display = 'none';
+                };
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        const passwordError = document.getElementById('passwordError');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (password !== confirmPassword) {
+            passwordError.textContent = 'Passwords do not match';
+            submitBtn.disabled = true;
+        } else {
+            passwordError.textContent = '';
+            submitBtn.disabled = false;
+        }
+    }
+</script>

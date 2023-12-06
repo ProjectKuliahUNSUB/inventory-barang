@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class M_MasterBarang extends Model {
     protected $table = 'master_barang';
     protected $primaryKey = 'id_barang';
-    protected $allowedFields = ['nama_barang', 'satuan_barang', 'merk_barang', 'harga', 'keterangan'];
+    protected $allowedFields = ['nama_barang', 'satuan_barang', 'merk_barang', 'harga', 'keterangan','img'];
 
     public function getMasterBarang() {
         $builder = $this->db->table($this->table.' tb');
