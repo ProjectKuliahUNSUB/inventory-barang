@@ -4,18 +4,17 @@ namespace App\Controllers;
 use App\Models\M_MasterBarang;
 use CodeIgniter\Controller;
 
-class MasterBarang extends Controller
-{
+class MasterBarang extends Controller {
     private $title;
-
-    public function __construct()
-    {
-
+    protected $role;
+    public function __construct() {
+        $this->role = strtolower(session('user')['role'] ?? '');
         $this->title = "Master Barang";
+        helper('image');
+        helper(['form']);
     }
 
-    public function index()
-    {
+    public function index() {
         // [DONE] index customer.
         $barangModel = new M_MasterBarang();
         $data_table['data'] = $barangModel->getMasterBarang();
@@ -31,7 +30,6 @@ class MasterBarang extends Controller
             'jumlah_barang',
             'tanggal_update',
             'keterangan',
-
         ];
         $data_table['fields'] = [
             'nama_barang',
@@ -51,29 +49,24 @@ class MasterBarang extends Controller
         ];
         echo view('layout', $data);
     }
-    public function tambah()
-    {
+    public function tambah() {
         // [DONE] tambah barang.
         $data = [
             'title' => $this->title,
-            'content' => view('pages/customer/form_tambah'),
+            'content' => view('pages/masterbarang/form_tambah'),
         ];
         echo view('layout', $data);
     }
-    public function save()
-    {
+    public function save() {
         // [TODO] save customer.
     }
-    public function edit()
-    {
+    public function edit() {
         // [TODO] edit customer.
     }
-    public function update()
-    {
+    public function update() {
         // [TODO] update customer.
     }
-    public function delete()
-    {
+    public function delete() {
         // [TODO] delete customer.
     }
 }

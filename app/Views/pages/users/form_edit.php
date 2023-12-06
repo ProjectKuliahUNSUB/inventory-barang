@@ -45,6 +45,9 @@
                 <img id="selectedImage"
                     src="<?= isset($dataUsers['img']) && !empty($dataUsers['img']) ? 'data:image/png;base64,'.$dataUsers['img'] : '//placehold.it/200x250'; ?>"
                     style="width: 200px; height: 250px;" alt="..." class="img-thumbnail rounded" />
+                <img id="loadingIndicator" src="<?= base_url('assets/loading.svg') ?>" height="60" width="60"
+                    class="img-thumbnail rounded" />
+                <div id="loadingIndicator">Loading...</div>
             </div>
         </div>
 

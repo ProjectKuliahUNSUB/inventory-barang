@@ -48,6 +48,27 @@
         .bg-background-component {
             background: #363062;
         }
+
+        .image-container {
+            position: relative;
+        }
+
+
+        #loadingIndicator {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+
+        }
+
+
+        #selectedImage {
+            width: 200px;
+            height: 250px;
+        }
     </style>
 </head>
 
@@ -206,7 +227,7 @@
         });
         var breadcrumbList = document.getElementById('breadcrumb-list');
         // var pathSoFar = '';
-        var excludedKeywords = ['public', 'index.php','admin','operator'];
+        var excludedKeywords = ['public', 'index.php', 'admin', 'operator'];
         for (var i = 0; i < pathSegments.length; i++) {
             if (excludedKeywords.some(keyword => pathSegments[i].includes(keyword))) {
                 continue;
