@@ -25,20 +25,19 @@ class M_BarangKeluar extends Model
 
         return $query->getResultArray();
     }
-    // public function getBarangKeluar()
-    // {
-    //     return $this->findAll();
-    // }
+
     public function getBarangKeluarById($id_bk)
     {
         return $this->find($id_bk);
     }
-    public function updateBarangKeluar($id_bk, $data)
+    public function updateBarangKeluar($id, $data)
     {
-        $this->update($id_bk, $data);
+        return $this->db->table($this->table)->update($data, array($this->primaryKey => $id));
     }
-    public function deleteBarangKeluar($id_bk)
+
+    public function deleteByid($id)
     {
-        $this->delete($id_bk);
+        return $this->db->table($this->table)->delete(array('id_bk' => $id));
+
     }
 }

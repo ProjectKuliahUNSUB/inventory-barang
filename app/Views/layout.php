@@ -74,10 +74,10 @@
 
 <body class="hold-transition   sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
-        <div class="preloader bg-sidebar flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="<?= base_url('assets/loading.svg') ?>" alt="AdminLTELogo" height="60"
+        <!-- <div class="preloader bg-sidebar flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="<= base_url('assets/loading.svg') ?>" alt="AdminLTELogo" height="60"
                 width="60">
-        </div>
+        </div> -->
         <nav class="main-header  bg-header navbar navbar-expand ">
             <?= view('header') ?>
         </nav>
@@ -120,6 +120,7 @@
 
     <script src=" <?= base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
     <script>
+
         var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

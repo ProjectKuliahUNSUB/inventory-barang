@@ -40,10 +40,10 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Adm
 
     $routes->get('transaksi/barang-keluar', 'Transaksi\BarangKeluar::index');
     $routes->get('transaksi/barang-keluar/tambah', 'Transaksi\BarangKeluar::tambah');
-    $routes->get('transaksi/barang-keluar/edit', 'Transaksi\BarangKeluar::edit');
-    $routes->get('transaksi/barang-keluar/save', 'Transaksi\BarangKeluar::save');
-    $routes->get('transaksi/barang-keluar/update', 'Transaksi\BarangKeluar::update');
-    $routes->get('transaksi/barang-keluar/delete', 'Transaksi\BarangKeluar::delete');
+    $routes->get('transaksi/barang-keluar/edit/(:num)', 'Transaksi\BarangKeluar::edit/$1');
+    $routes->post('transaksi/barang-keluar/save', 'Transaksi\BarangKeluar::save');
+    $routes->post('transaksi/barang-keluar/update', 'Transaksi\BarangKeluar::update');
+    $routes->get('transaksi/barang-keluar/delete/(:num)', 'Transaksi\BarangKeluar::delete/$1');
 });
 
 $routes->group('operator', ['namespace' => 'App\Controllers', 'filter' => 'auth:Operator'], function ($routes) {
