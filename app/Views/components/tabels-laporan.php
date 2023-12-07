@@ -9,9 +9,6 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th class="text-center">
-                            Tools
-                        </th>
 
                     </tr>
                 <?php } else { ?>
@@ -21,9 +18,6 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th class="text-center">
-                            Tools
-                        </th>
 
                     </tr>
                 <?php } ?>
@@ -52,21 +46,6 @@
                                 ?>
                             </td>
                         <?php endforeach; ?>
-                        <td class="text-center">
-                            <?php
-                            $currentUrl = current_url();
-                            $imgSrc = isset($row['img']) && !empty($row['img']) ? 'data:image/png;base64,' . $row['img'] : '//placehold.it/200x250';
-                            ?>
-                            <a class="btn btn-info btn-xs" rel="popover" data-img="<?= $imgSrc ?>"><i
-                                    class="fa-solid fa-image "></i></a> |
-                            <a href="<?= esc($currentUrl . '/edit/' . $row[$primaryKey]) ?>" class="btn btn-success btn-xs">
-                                <i class="fa-regular fa-pen-to-square mr-2"></i>Edit
-                            </a> |
-                            <a href="#" onclick="confirmDelete('<?= esc($currentUrl . '/delete/' . $row[$primaryKey]) ?>')"
-                                class="btn btn-danger btn-xs">
-                                <i class="fa-solid fa-trash mr-2"></i>Delete
-                            </a>
-                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -78,9 +57,6 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th class="text-center">
-                            Tools
-                        </th>
                     </tr>
                 <?php } else { ?>
                     <tr>
@@ -89,9 +65,6 @@
                                 <?= ucwords(str_replace('_', ' ', $field)) ?>
                             </th>
                         <?php endforeach; ?>
-                        <th class="text-center">
-                            Tools
-                        </th>
                     </tr>
                 <?php } ?>
             </tfoot>

@@ -16,6 +16,7 @@ $routes->group('auth', ['namespace' => 'App\Controllers'], function ($routes) {
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Admin'], function ($routes) {
     // Dashboard
     $routes->add('dashboard', 'Dashboard::index');
+    $routes->get('laporan', 'Laporan::index');
     //  Master Barang
     $routes->get('master-barang', 'MasterBarang::index');
     $routes->get('master-barang/tambah', 'MasterBarang::tambah');

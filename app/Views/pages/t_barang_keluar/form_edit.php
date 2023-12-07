@@ -3,6 +3,8 @@
         <div class="card-header bg-header">
             <h3 class="card-title text-white">Barang Keluar</h3>
         </div>
+        <?= view('components/alerts') ?>
+
         <?= form_open($role . '/transaksi/barang-keluar/update', ['enctype' => 'multipart/form-data']) ?>
         <input type="text" value="<?= $dataBarangKeluar['id_bk']; ?>" name="id" hidden>
 

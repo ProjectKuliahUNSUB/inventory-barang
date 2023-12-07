@@ -35,7 +35,7 @@ class M_BarangMasuk extends Model
     }
     public function updateBarangMasuk($id, $data)
     {
-        $this->db->table($this->table)->update($data, array('id_bm' => $id));
+        return $this->db->table($this->table)->update($data, array('id_bm' => $id));
     }
     public function deleteByid($id)
     {

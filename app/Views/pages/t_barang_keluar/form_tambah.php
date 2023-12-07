@@ -3,6 +3,8 @@
         <div class="card-header bg-header">
             <h3 class="card-title text-white">Barang Keluar</h3>
         </div>
+        <?= view('components/alerts') ?>
+
         <?= form_open($role . '/transaksi/barang-keluar/save', ['enctype' => 'multipart/form-data']) ?>
         <div class="card-body row ">
             <div class="col-sm-6">
