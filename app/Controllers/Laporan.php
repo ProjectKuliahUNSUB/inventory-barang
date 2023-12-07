@@ -23,6 +23,7 @@ class Laporan extends Controller
     {
         // [DONE] index customer.
         $data_table['data'] = $this->m_models->getMasterBarang();
+        $data_table['customclass'] = 'table-main-laporan';
         $data_table['primaryKey'] = 'id_barang';
         $data_table['judul'] = $this->title;
         $data_table['header'] = [
@@ -50,7 +51,7 @@ class Laporan extends Controller
         ];
         $data = [
             'title' => $this->title,
-            'content' => view('pages/masterbarang/index', ['table' => view('components/tabels-laporan', $data_table)])
+            'content' => view('pages/laporan/index', ['table' => view('components/tabels-laporan', $data_table)])
         ];
         echo view('layout', $data);
     }

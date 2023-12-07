@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
-
+    <link rel="stylesheet" href="<?= base_url('plugins/daterangepicker/daterangepicker.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
     <script src="<?= base_url('plugins/echarts/echarts.min.js'); ?>"></script>
     <style>
@@ -117,9 +117,12 @@
     <script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
     <script src="<?= base_url('dist/js/pages/dashboard2.js'); ?>"></script>
+    <script src="<?= base_url('plugins/moment/moment.min.js'); ?>"></script>
+    <script src="<?= base_url('plugins/daterangepicker/daterangepicker.js'); ?>"></script>
 
-    <script src=" <?= base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+    <script src="<?= base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
     <script>
+        $('#reservation').daterangepicker()
 
         var Toast = Swal.mixin({
             toast: true,
@@ -198,6 +201,7 @@
                         action: function (e, dt, node, config) {
                             const currentURL = window.location.href;
                             window.location.href = `${currentURL}/tambah`;
+
                         },
                     },
                     {
@@ -228,8 +232,44 @@
                             columns: 'th:not(:last-child)'
                         }
                     },
+
                 ],
+
             }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
+            $("#table-main-laporan").DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                buttons: [
+
+                    {
+                        extend: 'excel',
+                        className: 'bg-info',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                            columns: 'th:not(:last-child)'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'bg-primary',
+                        text: '<i class="fas fa-file-pdf"></i> PDF',
+                        exportOptions: {
+                            columns: 'th:not(:last-child)'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        className: 'bg-warning',
+                        text: '<i class="fas fa-print"></i> Print',
+                        exportOptions: {
+                            columns: 'th:not(:last-child)'
+                        }
+                    },
+
+                ],
+
+            }).buttons().container().appendTo('#table-main-laporan_wrapper .col-md-6:eq(0)');
 
         });
 
