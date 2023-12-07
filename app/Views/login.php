@@ -8,13 +8,10 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css'); ?>">
-
     <link rel="stylesheet" href="<?= base_url('fonts/icomoon/style.css'); ?>">
-
     <link rel="stylesheet" href="<?= base_url('css/owl.carousel.min.css'); ?>">
-
     <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css'); ?>">
-
+    <link rel="stylesheet" href="<?= base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('css/style.css'); ?>">
     <style>
         body {
@@ -67,7 +64,7 @@
             <div class="container ">
                 <div class="row">
                     <div class="col-md-6  shadow-off">
-                        <img src="<?= base_url('assets/logo-2.png')?>" alt="Image" class="images-mods">
+                        <img src="<?= base_url('assets/logo-2.png') ?>" alt="Image" class="images-mods">
                     </div>
                     <div class="col-md-6 contents">
                         <div class="row justify-content-center">
@@ -114,15 +111,44 @@
     </div>
     <!-- <div class="row bg-white"></div> -->
 
-    <script>
-        $(document).ready(function () {
-            $(":input").attr("autocomplete", "off");
-        });
-    </script>
+
+
     <script src="<?= base_url('js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?= base_url('js/popper.min.js') ?>"></script>
     <script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('js/main.js') ?>"></script>
+    <script src=" <?= base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+    <script>
+        $(document).ready(function () {
+            $(":input").attr("autocomplete", "off");
+        });
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 10000
+        });
+
+
+        var errorMessage = '<?= session()->getFlashdata('error') ?>';
+        if (errorMessage) {
+
+            Toast.fire({
+                icon: 'error',
+                title: errorMessage
+            });
+
+        }
+        var successMessage = '<?= session()->getFlashdata('success') ?>';
+        if (successMessage) {
+
+            Toast.fire({
+                icon: 'success',
+                title: successMessage
+            });
+
+        }
+    </script>
 </body>
 
 </html>

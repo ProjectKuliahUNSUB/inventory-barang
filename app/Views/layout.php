@@ -129,22 +129,22 @@
         });
         var successMessage = '<?= session()->getFlashdata('success') ?>';
         if (successMessage) {
-            setTimeout(function () {
-                Toast.fire({
-                    icon: 'success',
-                    title: successMessage
-                });
-            }, 1000);
+
+            Toast.fire({
+                icon: 'success',
+                title: successMessage
+            });
+
         }
 
         var errorMessage = '<?= session()->getFlashdata('error') ?>';
         if (errorMessage) {
-            setTimeout(function () {
-                Toast.fire({
-                    icon: 'error',
-                    title: errorMessage
-                });
-            }, 1000);
+
+            Toast.fire({
+                icon: 'error',
+                title: errorMessage
+            });
+
         }
         function confirmDelete(url) {
             var confirmMessage = "Are you sure you want to delete?";
