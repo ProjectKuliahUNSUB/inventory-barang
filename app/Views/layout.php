@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/daterangepicker/daterangepicker.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('plugins/select2/css/select2.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
     <script src="<?= base_url('plugins/echarts/echarts.min.js'); ?>"></script>
     <style>
         .bg-header {
@@ -69,6 +71,13 @@
             width: 200px;
             height: 250px;
         }
+
+        .select2-container .select2-selection--single {
+
+            /* height: 36px !important; */
+            padding: 0 !important;
+
+        }
     </style>
 </head>
 
@@ -119,11 +128,16 @@
     <script src="<?= base_url('dist/js/pages/dashboard2.js'); ?>"></script>
     <script src="<?= base_url('plugins/moment/moment.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/daterangepicker/daterangepicker.js'); ?>"></script>
-
+    <script src="<?= base_url('plugins/select2/js/select2.full.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
     <script>
-        $('#reservation').daterangepicker()
-
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+        $('#date-dashboard').daterangepicker({
+            showDropdowns: true,
+            startDate: start,
+            endDate: end,
+        });
         var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -132,22 +146,17 @@
         });
         var successMessage = '<?= session()->getFlashdata('success') ?>';
         if (successMessage) {
-
             Toast.fire({
                 icon: 'success',
                 title: successMessage
             });
-
         }
-
         var errorMessage = '<?= session()->getFlashdata('error') ?>';
         if (errorMessage) {
-
             Toast.fire({
                 icon: 'error',
                 title: errorMessage
             });
-
         }
         function confirmDelete(url) {
             var confirmMessage = "Are you sure you want to delete?";
@@ -159,7 +168,7 @@
             html: true,
             trigger: 'hover',
             placement: 'left',
-            content: function () {return '<img style="width: 200px !important; height: 250px !important;" alt="..." class=" rounded"  src="' + $(this).data('img') + '" />';}
+            content: function () { return '<img style="width: 200px !important; height: 250px !important;" alt="..." class=" rounded"  src="' + $(this).data('img') + '" />'; }
         });
         $(function () {
             $("#table-main-mb").DataTable({
@@ -201,7 +210,6 @@
                         action: function (e, dt, node, config) {
                             const currentURL = window.location.href;
                             window.location.href = `${currentURL}/tambah`;
-
                         },
                     },
                     {
@@ -232,9 +240,7 @@
                             columns: 'th:not(:last-child)'
                         }
                     },
-
                 ],
-
             }).buttons().container().appendTo('#table-main_wrapper .col-md-6:eq(0)');
             $("#table-main-laporan").DataTable({
                 responsive: true,

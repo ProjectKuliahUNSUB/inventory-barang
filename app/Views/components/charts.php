@@ -1,6 +1,6 @@
 <div class="card bg-background-component text-white">
     <div class="card-header">
-        <h5 class="card-title">Monthly Recap Report</h5>
+        <h5 class="card-title">Recap Report</h5>
 
 
     </div>

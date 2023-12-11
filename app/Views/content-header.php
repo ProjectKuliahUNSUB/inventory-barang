@@ -15,9 +15,10 @@
 <div class="container-fluid">
     <div class="row mb-2">
 
-        <div class="col-sm-6 ">
+        <div class="col-sm-6" style="height:36px;">
 
-            <ol class="bg-sidebar breadcrumb float-sm-left text-white p-1" id="breadcrumb-list">
+            <ol class="bg-sidebar h-100 breadcrumb float-sm-left text-white p-1" id="breadcrumb-list">
+            
                 <!-- Breadcrumb items will be dynamically added here -->
             </ol>
         </div>

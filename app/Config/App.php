@@ -16,8 +16,8 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    // public string $baseURL = 'http://localhost:8080';
-    public string $baseURL = 'http://localhost/inventory-barang/public';
+    public string $baseURL = 'http://localhost:8080';
+    // public string $baseURL = 'http://localhost/inventory-barang/public';
     // public string $baseURL = 'http://inventory.errorgeist.id/public';
 
     /**
