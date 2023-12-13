@@ -131,8 +131,13 @@
     <script src="<?= base_url('plugins/select2/js/select2.full.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
     <script>
-        var start = moment().subtract(29, 'days');
-        var end = moment();
+        <?php
+        // Assuming $start_date is defined before this point or fetched from your model
+        $start_date = $start_date ?? ''; // Set a default value if $start_date is not defined
+        $end_date = $end_date ?? ''; // Set a default value if $start_date is not defined
+        ?>
+        var start = '<?= isset($start_date) ?? '' ?>' ? moment('<?= $start_date ?>') : moment().subtract(30, 'days');
+        var end = '<?= isset($end_date) ?? '' ?>' ? moment('<?= $end_date ?>') : moment();
         $('#date-dashboard').daterangepicker({
             showDropdowns: true,
             startDate: start,
