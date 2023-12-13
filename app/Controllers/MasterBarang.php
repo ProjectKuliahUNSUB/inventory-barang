@@ -14,7 +14,6 @@ class MasterBarang extends Controller
         $this->role = strtolower(session('user')['role'] ?? '');
         $this->title = "Master Barang";
         $this->m_models = new M_MasterBarang();
-
         helper('image');
         helper(['form']);
     }
@@ -163,4 +162,5 @@ class MasterBarang extends Controller
         }
         return redirect()->to($this->role . '/master-barang')->with($status, $msg);
     }
+    
 }

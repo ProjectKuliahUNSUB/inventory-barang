@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-10">
-            <?= view('components/charts') ?>
+            <?= view('components/charts', ['data' => $chartdata]) ?>
             <div class="d-flex flex-wrap bg-background-component rounded">
                 <?= $view_content ?? '' ?>
             </div>
@@ -16,7 +16,7 @@
             </div>
             <form method="post" action="">
                 <div class="card bg-light mb-3 h-100">
-                    <div class="card-header text-bold">Filter Dashboard</div>
+                    <div class="card-header text-bold">Filter</div>
                     <div class="card-body">
 
                         <div class="form-group">

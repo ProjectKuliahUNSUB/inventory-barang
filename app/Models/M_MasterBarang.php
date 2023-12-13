@@ -57,6 +57,30 @@ class M_MasterBarang extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+    public function getChartData($id_barang)
+    {
+        $builder = $this->db->table('trx_barang_keluar bk');
+        $builder->select(
+            "date_format(bk.created_at, '%Y-%m-%d') AS tanggal,
+            'Barang Keluar' AS jenis,
+            COALESCE(SUM(bk.jumlah), 0) AS jumlah"
+        );
+        $builder->where('bk.id_barang', $id_barang);
+        $builder->groupBy('tanggal');
+        $query2 = $builder->get();
+
+        $builder = $this->db->table('trx_barang_masuk bm');
+        $builder->select(
+            "date_format(bm.created_at, '%Y-%m-%d') AS tanggal,
+            'Barang Masuk' AS jenis,
+            COALESCE(SUM(bm.jumlah), 0) AS jumlah"
+        );
+        $builder->where('bm.id_barang', $id_barang);
+        $builder->groupBy('tanggal');
+        $query3 = $builder->get();
+
+        return array_merge($query2->getResultArray(), $query3->getResultArray());
+    }
     public function insertBarang($data)
     {
         $this->insert($data);

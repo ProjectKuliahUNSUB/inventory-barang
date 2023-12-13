@@ -1,6 +1,6 @@
 <div class="card bg-background-component text-white">
     <div class="card-header">
-        <h5 class="card-title">Recap Report</h5>
+        <h5 class="card-title">Barang</h5>
 
 
     </div>
@@ -10,15 +10,43 @@
             <div id="chart-container" style="width: 100%; height: 400px;"></div>
 
 
-            <script>
+            <script defer>
                 var chart = echarts.init(document.getElementById('chart-container'));
+                // Parse the JSON string into a JavaScript object
+                var jsonData = JSON.parse(JSON.stringify(<?= $data ?>))
+                console.log(jsonData);
+
+                // Extract unique jenis values to use as legend data
+                var legendData = [...new Set(jsonData.map(item => item.jenis))];
+
+                // Extract tanggal values to use as xAxis data
+                var xAxisData = [...new Set(jsonData.map(item => item.tanggal))];
+
+                // Prepare series data for each jenis
+                var seriesData = legendData.map(jenis => {
+                    return {
+                        name: jenis,
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            shadowColor: 'rgba(0,0,0,0.3)',
+                            shadowBlur: 10,
+                            shadowOffsetY: 8,
+                        },
+                        data: jsonData.filter(item => item.jenis === jenis).map(item => item.jumlah)
+                    };
+                });
+
+                // Use extracted data to set ECharts options
                 chart.setOption({
                     color: ['#00FF00', '#FF0000'],
                     tooltip: {
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['Barang Masuk', 'Barang Keluar'],
+                        data: legendData,
                         textStyle: {
                             color: 'white'
                         },
@@ -37,7 +65,7 @@
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        data: xAxisData,
                         axisLabel: {
                             textStyle: {
                                 color: 'white'
@@ -51,44 +79,10 @@
                                 color: 'white'
                             }
                         },
-
                     },
-                    series: [
-                        {
-                            name: 'Barang Masuk',
-                            type: 'line',
-                            stack: 'Total',
-                            smooth: true,
-                            lineStyle: {
-                                width: 3,
-                                shadowColor: 'rgba(0,0,0,0.3)',
-                                shadowBlur: 10,
-                                shadowOffsetY: 8,
-                                // color: '#00ff00'
-                            },
-
-                            // itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                            data: [120, 132, 101, 134, 90, 230, 210]
-                        },
-                        {
-                            name: 'Barang Keluar',
-                            type: 'line',
-                            stack: 'Total',
-                            smooth: true,
-                            lineStyle: {
-                                width: 3,
-                                shadowColor: 'rgba(0,0,0,0.3)',
-                                shadowBlur: 10,
-                                shadowOffsetY: 8,
-                                // color: '#ff0000'
-                            },
-
-                            // itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                            data: [220, 182, 191, 234, 290, 330, 310]
-                        },
-
-                    ]
+                    series: seriesData
                 });
+
             </script>
         </div>
         <!-- /.row -->
