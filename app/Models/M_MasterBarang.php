@@ -57,7 +57,7 @@ class M_MasterBarang extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
-    public function getChartData($id_barang)
+    public function getChartData($id_barang, $startDate = null, $endDate = null)
     {
         $builder = $this->db->table('trx_barang_keluar bk');
         $builder->select(
@@ -66,6 +66,15 @@ class M_MasterBarang extends Model
             COALESCE(SUM(bk.jumlah), 0) AS jumlah"
         );
         $builder->where('bk.id_barang', $id_barang);
+
+        // Add date range filtering
+        if ($startDate !== null) {
+            $builder->where('bk.created_at >=', $startDate);
+        }
+        if ($endDate !== null) {
+            $builder->where('bk.created_at <=', $endDate);
+        }
+
         $builder->groupBy('tanggal');
         $query2 = $builder->get();
 
@@ -76,11 +85,21 @@ class M_MasterBarang extends Model
             COALESCE(SUM(bm.jumlah), 0) AS jumlah"
         );
         $builder->where('bm.id_barang', $id_barang);
+
+        // Add date range filtering
+        if ($startDate !== null) {
+            $builder->where('bm.created_at >=', $startDate);
+        }
+        if ($endDate !== null) {
+            $builder->where('bm.created_at <=', $endDate);
+        }
+
         $builder->groupBy('tanggal');
         $query3 = $builder->get();
 
         return array_merge($query2->getResultArray(), $query3->getResultArray());
     }
+
     public function insertBarang($data)
     {
         $this->insert($data);

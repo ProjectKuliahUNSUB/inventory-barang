@@ -14,14 +14,14 @@ class Dashboard extends Controller
 
     public function index()
     {
-        $sdValue = $this->request->getGet('sd');
-        $edValue = $this->request->getGet('ed');
-        if (empty($sdValue) && empty($edValue)) {
-            $defaultSd = date('Y-m-d', strtotime('-30 days'));
-            $defaultEd = date('Y-m-d');
+        // $sdValue = $this->request->getGet('sd');
+        // $edValue = $this->request->getGet('ed');
+        // if (empty($sdValue) && empty($edValue)) {
+        //     $defaultSd = date('Y-m-d', strtotime('-30 days'));
+        //     $defaultEd = date('Y-m-d');
 
-            return redirect()->to($this->role . "/dashboard/?sd=$defaultSd&ed=$defaultEd");
-        }
+        //     return redirect()->to($this->role . "/dashboard/?sd=$defaultSd&ed=$defaultEd");
+        // }
 
 
         $modelBarang = new M_MasterBarang();
@@ -29,21 +29,26 @@ class Dashboard extends Controller
         $databarang = $modelBarang->getMasterBarang();
         $id_barang = $this->request->getVar('id_barang');
         $date_range = $this->request->getVar('date_range');
+        $date_range_array = explode(' - ', $date_range);
+        $date_start = isset($date_range_array[0]) ? $date_range_array[0] : false;
+        $date_end = isset($date_range_array[1]) ? $date_range_array[1] : false;
         $content = [
             'databarang' => $databarang,
-            'sd' => $sdValue,
-            'ed' => $edValue,
             'barang' => null,
             'chartdata' => null,
             'date_range' => $date_range
         ];
+        $data = [
+            'title' => 'Dashboard Page'
+        ];
         if (isset($id_barang) && isset($date_range)) {
-            $date_range_array = explode(' - ', $date_range);
-
-            $date_start = isset($date_range_array[0]) ? $date_range_array[0] : '';
-            $date_end = isset($date_range_array[1]) ? $date_range_array[1] : '';
+            // Convert to yyyy-mm-dd format
+            $date_start = \DateTime::createFromFormat('m/d/Y', $date_start)->format('Y-m-d');
+            $date_end = \DateTime::createFromFormat('m/d/Y', $date_end)->format('Y-m-d');
             $content['barang'] = $modelBarang->getBarangDashboardCard($id_barang);
-            $content['chartdata'] = json_encode($modelBarang->getChartData($id_barang));
+            $data['sd'] = $date_start;
+            $data['ed'] = $date_end;
+            $content['chartdata'] = json_encode($modelBarang->getChartData($id_barang, $date_start, $date_end));
             $data5 = array(
                 'bg' => 'bg-success',
                 'icon' => 'fas fa-circle-down',
@@ -101,12 +106,7 @@ class Dashboard extends Controller
             $content['view_content'] = $view_content;
         }
 
-        $data = [
-            'title' => 'Dashboard Page',
-            'start_date' => $sdValue,
-            'end_date' => $edValue,
-            'content' => view('dashboard', $content)
-        ];
+        $data['content'] = view('dashboard', $content);
 
         echo view('layout', $data);
     }

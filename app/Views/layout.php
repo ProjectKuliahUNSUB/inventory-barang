@@ -133,10 +133,11 @@
     <script>
         <?php
         // Assuming $start_date is defined before this point or fetched from your model
-        $start_date = $start_date ?? ''; // Set a default value if $start_date is not defined
-        $end_date = $end_date ?? ''; // Set a default value if $start_date is not defined
+        $start_date = $sd ?? date('Y-m-d', strtotime('-30 days')); // Set a default value if $start_date is not defined
+        $end_date = $ed ?? date('Y-m-d'); // Set a default value if $start_date is not defined
         ?>
-        var start = '<?= isset($start_date) ?? '' ?>' ? moment('<?= $start_date ?>') : moment().subtract(30, 'days');
+        var start = moment('<?= $start_date ?>')
+        console.log(start);
         var end = '<?= isset($end_date) ?? '' ?>' ? moment('<?= $end_date ?>') : moment();
         $('#date-dashboard').daterangepicker({
             showDropdowns: true,
@@ -173,7 +174,7 @@
             html: true,
             trigger: 'hover',
             placement: 'left',
-            content: function () { return '<img style="width: 200px !important; height: 250px !important;" alt="..." class=" rounded"  src="' + $(this).data('img') + '" />'; }
+            content: function () {return '<img style="width: 200px !important; height: 250px !important;" alt="..." class=" rounded"  src="' + $(this).data('img') + '" />';}
         });
         $(function () {
             $("#table-main-mb").DataTable({
