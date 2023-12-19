@@ -16,7 +16,14 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Adm
     // Dashboard
     $routes->add('dashboard', 'Dashboard::index');
     $routes->get('laporan', 'Laporan::index');
-    //  Master Barang
+    // Satuan
+    $routes->get('satuan', 'Satuan::index');
+    $routes->get('satuan/tambah', 'Satuan::tambah');
+    $routes->get('satuan/edit/(:num)', 'Satuan::edit/$1');
+    $routes->post('satuan/save', 'Satuan::save');
+    $routes->post('satuan/update', 'Satuan::update');
+    $routes->get('satuan/delete/(:num)', 'Satuan::delete/$1');
+    // Master Barang
     $routes->get('master-barang', 'MasterBarang::index');
     $routes->get('master-barang/tambah', 'MasterBarang::tambah');
     $routes->get('master-barang/edit/(:num)', 'MasterBarang::edit/$1');
@@ -51,6 +58,13 @@ $routes->group('operator', ['namespace' => 'App\Controllers', 'filter' => 'auth:
     // Dashboard
     $routes->add('dashboard', 'Dashboard::index');
     $routes->get('laporan', 'Laporan::index');
+    // Satuan
+    $routes->get('satuan', 'Satuan::index');
+    $routes->get('satuan/tambah', 'Satuan::tambah');
+    $routes->get('satuan/edit/(:num)', 'Satuan::edit/$1');
+    $routes->post('satuan/save', 'Satuan::save');
+    $routes->post('satuan/update', 'Satuan::update');
+    $routes->get('satuan/delete/(:num)', 'Satuan::delete/$1');
     //  Master Barang
     $routes->get('master-barang', 'MasterBarang::index');
     $routes->get('master-barang/tambah', 'MasterBarang::tambah');

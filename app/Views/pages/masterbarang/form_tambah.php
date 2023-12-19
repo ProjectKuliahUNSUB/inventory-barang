@@ -10,19 +10,28 @@
         <div class="card-body row ">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="username" class="form-label">Nama</label>
+                    <label class="form-label">Nama</label>
                     <input type="text" class="form-control" id="nama_barang" name="nama_barang">
                 </div>
                 <div class="form-group">
-                    <label for="username" class="form-label">Satuan</label>
-                    <input type="text" class="form-control" id="satuan_barang" name="satuan_barang">
+                    <label for="satuan_id">Satuan</label>
+                    <select name="satuan_id" class="form-control select2" style="width: 100%;">
+                        <?php foreach ($databarang as $barang): ?>
+                            <option value="<?= $barang['satuan_id'] ?>">
+                                <?= $barang['satuan_nama'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <!-- <label class="form-label">Satuan</label>
+                    <input type="text" class="form-control" id="satuan_barang" name="satuan_barang"> -->
                 </div>
                 <div class="form-group">
-                    <label for="username" class="form-label">Merk</label>
+                    <label class="form-label">Merk</label>
                     <input type="text" class="form-control" id="merk_barang" name="merk_barang">
                 </div>
                 <div class="form-group">
-                    <label for="username" class="form-label">Harga</label>
+                    <label class="form-label">Harga</label>
                     <input type="number" class="form-control" id="harga" name="harga">
                 </div>
             </div>
