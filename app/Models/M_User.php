@@ -33,6 +33,5 @@ class M_User extends Model
     public function deleteByid($id)
     {
         return $this->db->table($this->table)->delete(array('id' => $id));
-
     }
 }

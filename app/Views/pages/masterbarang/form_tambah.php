@@ -14,17 +14,17 @@
                     <input type="text" class="form-control" id="nama_barang" name="nama_barang">
                 </div>
                 <div class="form-group">
-                    <label for="satuan_id">Satuan</label>
-                    <select name="satuan_id" class="form-control select2" style="width: 100%;">
-                        <?php foreach ($databarang as $barang): ?>
-                            <option value="<?= $barang['satuan_id'] ?>">
-                                <?= $barang['satuan_nama'] ?>
+                    <label for="id_satuan">Satuan</label>
+                    <select name="id_satuan" class="form-control select2" style="width: 100%;">
+                        <?php foreach ($datasatuan as $satuan): ?>
+                            <option value="<?= $satuan['id_satuan'] ?>">
+                                <?= $satuan['nama_satuan'] ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
 
                     <!-- <label class="form-label">Satuan</label>
-                    <input type="text" class="form-control" id="satuan_barang" name="satuan_barang"> -->
+                    <input type="text" class="form-control" id="id_satuan" name="id_satuan"> -->
                 </div>
                 <div class="form-group">
                     <label class="form-label">Merk</label>

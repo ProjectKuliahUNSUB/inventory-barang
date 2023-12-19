@@ -41,10 +41,10 @@ class Laporan extends Controller
             'nama_barang',
             'merk_barang',
             'harga',
-            ['jumlah_barang_masuk', 'satuan_barang'],
-            ['jumlah_barang_keluar', 'satuan_barang'],
+            ['jumlah_barang_masuk', 'nama_satuan'],
+            ['jumlah_barang_keluar', 'nama_satuan'],
             'total_harga',
-            ['jumlah_barang', 'satuan_barang'],
+            ['jumlah_barang', 'nama_satuan'],
             'tanggal_update',
             'keterangan',
 

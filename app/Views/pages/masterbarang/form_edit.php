@@ -11,38 +11,47 @@
         <div class="card-body row ">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="username" class="form-label">Nama</label>
+                    <label class="form-label">Nama</label>
                     <input type="text" class="form-control" id="nama_barang" name="nama_barang"
                         value="<?= $dataBarang['nama_barang']; ?>">
                 </div>
                 <div class=" form-group">
-                    <label for="username" class="form-label">Satuan</label>
-                    <input type="text" class="form-control" id="satuan_barang" name="satuan_barang"
-                        value="<?= $dataBarang['satuan_barang']; ?>">
+                    <label>Satuan</label>
+                    <select name="id_satuan" class="form-control select2" style="width: 100%;">
+                        <?php foreach ($datasatuan as $satuan): ?>
+                            <option value="<?= $satuan['id_satuan'] ?>" <?= $dataBarang['id_satuan'] == $satuan['id_satuan'] ? 'selected' : '' ?>>
+                                <?= $satuan['nama_satuan'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <!-- <label   class="form-label">Satuan</label>
+                    <input type="text" class="form-control" id="id_satuan" name="id_satuan"
+                        value="<?= $dataBarang['id_satuan']; ?>"> -->
                 </div>
                 <div class=" form-group">
-                    <label for="username" class="form-label">Merk</label>
+                    <label class="form-label">Merk</label>
                     <input type="text" class="form-control" id="merk_barang" name="merk_barang"
                         value="<?= $dataBarang['merk_barang']; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="username" class="form-label">Harga Satuan</label>
+
+                    <label class="form-label">Harga Satuan</label>
                     <input type="number" class="form-control" id="harga" name="harga"
                         value="<?= $dataBarang['harga']; ?>">
                 </div>
             </div>
             <div class=" col-sm-4">
                 <div class="form-group">
-                    <label for="customFile">Image</label>
+                    <label>Image</label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="customFile" name="image"
                             onchange="displayImage()">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <label class="custom-file-label">Choose file</label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="keterangan" class="form-label">Keterangan</label>
+                    <label class="form-label">Keterangan</label>
                     <textarea class="form-control" style="height: 210px;" id="keterangan"
                         name="keterangan"><?= $dataBarang['keterangan']; ?></textarea>
 

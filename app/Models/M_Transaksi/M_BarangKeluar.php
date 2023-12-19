@@ -19,8 +19,10 @@ class M_BarangKeluar extends Model
     }
     public function getBarangKeluar()
     {
-        $this->select('trx_barang_keluar.*, master_barang.nama_barang, master_barang.satuan_barang');
+        $this->select('trx_barang_keluar.*, master_barang.nama_barang, msb.nama_satuan');
         $this->join('master_barang', 'master_barang.id_barang = trx_barang_keluar.id_barang');
+        $this->join('master_satuan_barang msb', 'master_barang.id_satuan = msb.id_satuan', 'inner');
+
         $query = $this->get();
 
         return $query->getResultArray();

@@ -23,7 +23,7 @@ class BarangMasuk extends Controller
         $data_table['data'] = $this->bm_model->getBarangMasuk();
         $data_table['primaryKey'] = 'id_bm';
         $data_table['header'] = ['kode masuk', ' Nama barang', 'customer', 'tanggal', 'jumlah'];
-        $data_table['fields'] = ['kode_masuk', 'nama_barang', 'customer', 'tgl_masuk', ['jumlah', 'satuan_barang']];
+        $data_table['fields'] = ['kode_masuk', 'nama_barang', 'customer', 'tgl_masuk', ['jumlah', 'nama_satuan']];
         $data = [
             'title' => $this->title,
             'content' => view('pages/t_barang_masuk/index', ['table' => view('components/tabels', $data_table)])

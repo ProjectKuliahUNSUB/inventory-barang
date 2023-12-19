@@ -54,21 +54,21 @@ class Dashboard extends Controller
                 'icon' => 'fas fa-circle-down',
                 'title' => 'Barang Masuk',
                 'value' => $content['barang'][0]['jumlah_barang_masuk'],
-                'unit' => $content['barang'][0]['satuan_barang']
+                'unit' => $content['barang'][0]['nama_satuan']
             );
             $data6 = array(
                 'bg' => 'bg-danger',
                 'icon' => 'fas fa-circle-up',
                 'title' => 'Barang Keluar',
                 'value' => $content['barang'][0]['jumlah_barang_keluar'],
-                'unit' => $content['barang'][0]['satuan_barang']
+                'unit' => $content['barang'][0]['nama_satuan']
             );
             $data4 = array(
                 'bg' => 'bg-warning',
                 'icon' => 'fas fa-box ',
                 'title' => 'Total Barang',
                 'value' => $content['barang'][0]['jumlah_barang'],
-                'unit' => $content['barang'][0]['satuan_barang']
+                'unit' => $content['barang'][0]['nama_satuan']
             );
 
             $view_content =

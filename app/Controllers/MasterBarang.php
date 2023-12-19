@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\M_MasterBarang;
 use CodeIgniter\Controller;
+use App\Models\M_Satuan;
 
 class MasterBarang extends Controller
 {
@@ -22,6 +23,7 @@ class MasterBarang extends Controller
     {
         // [DONE] index customer.
         $data_table['data'] = $this->m_models->getMasterBarang();
+
         $data_table['customclass'] = 'table-main-mb';
         $data_table['primaryKey'] = 'id_barang';
         $data_table['judul'] = $this->title;
@@ -40,10 +42,10 @@ class MasterBarang extends Controller
             'nama_barang',
             'merk_barang',
             'harga',
-            ['jumlah_barang_masuk', 'satuan_barang'],
-            ['jumlah_barang_keluar', 'satuan_barang'],
+            ['jumlah_barang_masuk', 'nama_satuan'],
+            ['jumlah_barang_keluar', 'nama_satuan'],
             'total_harga',
-            ['jumlah_barang', 'satuan_barang'],
+            ['jumlah_barang', 'nama_satuan'],
             'tanggal_update',
             'keterangan',
 
@@ -57,9 +59,12 @@ class MasterBarang extends Controller
     public function tambah()
     {
         // [DONE] tambah barang.
+        $modelBarang = new M_Satuan();
+        $dataForm['datasatuan'] = $modelBarang->getSatuan();
+
         $data = [
             'title' => $this->title,
-            'content' => view('pages/masterbarang/form_tambah'),
+            'content' => view('pages/masterbarang/form_tambah', $dataForm),
         ];
         echo view('layout', $data);
     }
@@ -70,7 +75,7 @@ class MasterBarang extends Controller
         $validation = \Config\Services::validation();
         $validation->setRules([
             'nama_barang' => 'required',
-            'satuan_barang' => 'required',
+            'id_satuan' => 'required',
             'merk_barang' => 'required',
             'harga' => 'required',
             'keterangan' => 'required',
@@ -83,14 +88,14 @@ class MasterBarang extends Controller
         if ($image->isValid() && !$image->hasMoved()) {
             $imageData = processAndUploadImage($image);
             $nama_barang = $this->request->getPost('nama_barang');
-            $satuan_barang = $this->request->getPost('satuan_barang');
+            $id_satuan = $this->request->getPost('id_satuan');
             $merk_barang = $this->request->getPost('merk_barang');
             $harga = $this->request->getPost('harga');
             $keterangan = $this->request->getPost('keterangan');
             $data = [
                 'img' => $imageData,
                 'nama_barang' => $nama_barang,
-                'satuan_barang' => $satuan_barang,
+                'id_satuan' => $id_satuan,
                 'merk_barang' => $merk_barang,
                 'harga' => $harga,
                 'keterangan' => $keterangan,
@@ -104,9 +109,12 @@ class MasterBarang extends Controller
     public function edit($id)
     {
         $dataBarang = $this->m_models->getBarangById($id);
+        $modelBarang = new M_Satuan();
+        $dataForm['datasatuan'] = $modelBarang->getSatuan();
+        $dataForm['dataBarang'] = $dataBarang;
         $data = [
             'title' => $this->title,
-            'content' => view('pages/masterbarang/form_edit', ['dataBarang' => $dataBarang]),
+            'content' => view('pages/masterbarang/form_edit', $dataForm),
         ];
         echo view('layout', $data);
     }
@@ -115,7 +123,7 @@ class MasterBarang extends Controller
         $validation = \Config\Services::validation();
         $validation->setRules([
             'nama_barang' => 'required',
-            'satuan_barang' => 'required',
+            'id_satuan' => 'required',
             'merk_barang' => 'required',
             'harga' => 'required',
             'keterangan' => 'required',
@@ -135,14 +143,14 @@ class MasterBarang extends Controller
             $imageData = $imgBase64;
         }
         $nama_barang = $this->request->getPost('nama_barang');
-        $satuan_barang = $this->request->getPost('satuan_barang');
+        $id_satuan = $this->request->getPost('id_satuan');
         $merk_barang = $this->request->getPost('merk_barang');
         $harga = $this->request->getPost('harga');
         $keterangan = $this->request->getPost('keterangan');
         $data = [
             'img' => $imageData,
             'nama_barang' => $nama_barang,
-            'satuan_barang' => $satuan_barang,
+            'id_satuan' => $id_satuan,
             'merk_barang' => $merk_barang,
             'harga' => $harga,
             'keterangan' => $keterangan,
@@ -162,5 +170,5 @@ class MasterBarang extends Controller
         }
         return redirect()->to($this->role . '/master-barang')->with($status, $msg);
     }
-    
+
 }

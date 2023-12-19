@@ -24,7 +24,7 @@ class BarangKeluar extends Controller
         $data_table['primaryKey'] = 'id_bk';
         $data_table['data'] = $this->bk_model->getBarangKeluar();
         $data_table['header'] = ['Kode Keluar', 'Nama barang', 'tanggal keluar', 'tujuan', 'jumlah'];
-        $data_table['fields'] = ['kode_keluar', 'nama_barang', 'tgl_keluar', 'tujuan', ['jumlah', 'satuan_barang']];
+        $data_table['fields'] = ['kode_keluar', 'nama_barang', 'tgl_keluar', 'tujuan', ['jumlah', 'nama_satuan']];
         $data = [
             'title' => $this->title,
             'content' => view('pages/t_barang_keluar/index', ['table' => view('components/tabels', $data_table)])

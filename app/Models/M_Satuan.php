@@ -1,36 +1,37 @@
 <?php
-namespace App\Models\M_MasterBarang;
+namespace App\Models;
 
 use CodeIgniter\Model;
 
 class M_Satuan extends Model
 {
-    protected $table = 'tbl_satuan';
-    protected $primaryKey = 'satuan_id';
+    protected $table = 'master_satuan_barang';
+    protected $primaryKey = 'id_satuan';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['satuan_nama', 'satuan_keterangan', 'created_at', 'updated_at'];
+    protected $allowedFields = ['id_satuan', 'satuan_nama', 'satuan_keterangan', 'created_at', 'updated_at'];
     protected $validationRules = [];
     protected $validationMessages = [];
     protected $skipValidation = false;
-    public function insertSatuan($data)
-    {
-        $this->insert($data);
-        return $this->insertID();
-    }
     public function getSatuan()
     {
         return $this->findAll();
     }
-    public function getSatuanById($satuan_id)
+    public function insertSatuan($data)
     {
-        return $this->find($satuan_id);
+        $this->db->table($this->table)->insert($data);
+        return $this->insertID();
     }
-    public function updateSatuan($satuan_id, $data)
+    public function getSatuanById($id)
     {
-        $this->update($satuan_id, $data);
+        return $this->find($id);
     }
-    public function deleteSatuan($satuan_id)
+    public function updateSatuan($id, $data)
     {
-        $this->delete($satuan_id);
+        return $this->db->table($this->table)->update($data, array($this->primaryKey => $id));
+    }
+    public function deleteByid($id)
+    {
+        return $this->db->table($this->table)->delete(array($this->primaryKey => $id));
+
     }
 }
