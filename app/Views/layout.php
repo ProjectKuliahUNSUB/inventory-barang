@@ -95,15 +95,45 @@
         </aside>
         <div class="content-wrapper bg-background-conten">
             <div class="content-header">
+
                 <?= view('content-header') ?>
             </div>
             <section class="content">
                 <?= $content ?? '' ?>
             </section>
+            <div class="modal fade" id="modal-default">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Export Filter</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" name="date_range" class="form-control float-right"
+                                        id="date-dashboard">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <!-- <button type="button" class="btn bg-info btn-sm disabled" id="exportExcel"><i
+                                    class="fas fa-file-excel"></i> Excel</button> -->
+                            <button type="button" class="btn bg-primary btn-sm" id="exportPDF"><i
+                                    class="fas fa-file-pdf"></i> Export</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <footer class="main-footer  bg-header">
-            <?= view('footer') ?>
-        </footer>
+    </div>
+    </div>
+    <footer class="main-footer  bg-header">
+        <?= view('footer') ?>
+    </footer>
     </div>
     <script src="<?= base_url('plugins/jquery/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
@@ -136,6 +166,7 @@
         $start_date = $sd ?? date('Y-m-d', strtotime('-30 days')); // Set a default value if $start_date is not defined
         $end_date = $ed ?? date('Y-m-d'); // Set a default value if $start_date is not defined
         ?>
+        const currentURL = window.location.href;
         var start = moment('<?= $start_date ?>')
         console.log(start);
         var end = '<?= isset($end_date) ?? '' ?>' ? moment('<?= $end_date ?>') : moment();
@@ -143,6 +174,22 @@
             showDropdowns: true,
             startDate: start,
             endDate: end,
+        });
+        $('#exportExcel').click(function () {
+            var startDate = $('#date-dashboard').data('daterangepicker').startDate.format('YYYY-MM-DD');
+            var endDate = $('#date-dashboard').data('daterangepicker').endDate.format('YYYY-MM-DD');
+
+            // Replace '/excel' with the actual URL you want to navigate to, and append the date parameters
+            window.open(currentURL + '/excel?start_date=' + startDate + '&end_date=' + endDate, '_blank');
+        });
+
+        // Add click event for the PDF button
+        $('#exportPDF').click(function () {
+            var startDate = $('#date-dashboard').data('daterangepicker').startDate.format('YYYY-MM-DD');
+            var endDate = $('#date-dashboard').data('daterangepicker').endDate.format('YYYY-MM-DD');
+
+            // Replace '/pdf' with the actual URL you want to navigate to, and append the date parameters
+            window.open(currentURL + '/pdf?start_date=' + startDate + '&end_date=' + endDate, '_blank');
         });
         var Toast = Swal.mixin({
             toast: true,
@@ -252,40 +299,18 @@
                 responsive: true,
                 lengthChange: false,
                 autoWidth: false,
-                buttons: [
 
-                    {
-                        extend: 'excel',
-                        className: 'bg-info',
-                        text: '<i class="fas fa-file-excel"></i> Excel',
-                        exportOptions: {
-                            columns: 'th:not(:last-child)'
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        className: 'bg-primary',
-                        text: '<i class="fas fa-file-pdf"></i> PDF',
-                        exportOptions: {
-                            columns: 'th:not(:last-child)'
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        className: 'bg-warning',
-                        text: '<i class="fas fa-print"></i> Print',
-                        exportOptions: {
-                            columns: 'th:not(:last-child)'
-                        }
-                    },
-
-                ],
+                initComplete: function () {
+                    // Append your button to the DataTable wrapper
+                    var modalButton = '<button type="button" class="btn btn-default bg-warning" data-toggle="modal" data-target="#modal-default"><i class="fas fa-print"></i> Export</button>';
+                    $('#table-main-laporan_wrapper .col-md-6:eq(0)').append(modalButton);
+                }
 
             }).buttons().container().appendTo('#table-main-laporan_wrapper .col-md-6:eq(0)');
 
         });
 
-        const currentURL = window.location.href;
+        // const currentURL = window.location.href;
         const menuItems = document.querySelectorAll(".nav-item");
         for (const menuItem of menuItems) {
             const href = menuItem.querySelector("a").href;
@@ -342,6 +367,7 @@
             });
         }
     </script>
+
 </body>
 
 </html>

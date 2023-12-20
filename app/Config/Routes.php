@@ -16,6 +16,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth:Adm
     // Dashboard
     $routes->add('dashboard', 'Dashboard::index');
     $routes->get('laporan', 'Laporan::index');
+    $routes->get('laporan/pdf', 'Laporan::exPDF');
     // Satuan
     $routes->get('satuan', 'Satuan::index');
     $routes->get('satuan/tambah', 'Satuan::tambah');

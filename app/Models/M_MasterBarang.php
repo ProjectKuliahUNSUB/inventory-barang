@@ -35,6 +35,40 @@ class M_MasterBarang extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+    public function getMasterBarangLaporan($startDate = null, $endDate = null)
+    {
+        $builder = $this->db->table($this->table . ' tb');
+        $builder->select(
+            'tb.id_barang,
+        tb.nama_barang,
+        msb.nama_satuan,
+        tb.merk_barang,
+        tb.keterangan,
+        tb.harga,
+        tb.img,
+        COALESCE(SUM(tbm.jumlah), 0) AS jumlah_barang_masuk,
+        COALESCE(SUM(tbk.jumlah), 0) AS jumlah_barang_keluar,
+        COALESCE(SUM(tbm.jumlah), 0) - COALESCE(SUM(tbk.jumlah), 0) AS jumlah_barang,
+        COALESCE(SUM(tbm.jumlah * tb.harga), 0) - COALESCE(SUM(tbk.jumlah * tb.harga), 0) AS total_harga,
+        MAX(tbm.tgl_masuk) AS tanggal_update'
+        );
+        $builder->join('trx_barang_masuk tbm', 'tb.id_barang = tbm.id_barang', 'left');
+        $builder->join('trx_barang_keluar tbk', 'tb.id_barang = tbk.id_barang', 'left');
+        $builder->join('master_satuan_barang msb', 'tb.id_satuan = msb.id_satuan', 'inner');
+
+        // Add the date filtering condition for both trx_barang_masuk and trx_barang_keluar
+        if ($startDate && $endDate) {
+            $builder->where('tbm.tgl_masuk >=', $startDate);
+            $builder->where('tbm.tgl_masuk <=', $endDate);
+            $builder->where('tbk.tgl_keluar >=', $startDate);
+            $builder->where('tbk.tgl_keluar <=', $endDate);
+        }
+
+        $builder->groupBy('tb.id_barang, tb.nama_barang, tb.id_satuan, tb.merk_barang, tb.keterangan, tb.harga,tb.img');
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
     public function getBarangDashboardCard($id)
     {
         $builder = $this->db->table($this->table . ' tb');
@@ -54,7 +88,7 @@ class M_MasterBarang extends Model
         );
         $builder->join('trx_barang_masuk tbm', 'tb.id_barang = tbm.id_barang', 'left');
         $builder->join('trx_barang_keluar tbk', 'tb.id_barang = tbk.id_barang', 'left');
-        $builder->join('master_satuan_barang msb', 'tb.id_satuan = msb.id_satuan', 'inner');  
+        $builder->join('master_satuan_barang msb', 'tb.id_satuan = msb.id_satuan', 'inner');
 
         $builder->where('tb.id_barang', $id);
         $builder->groupBy('tb.id_barang, tb.nama_barang, tb.id_satuan, tb.merk_barang, tb.keterangan, tb.harga,tb.img');
