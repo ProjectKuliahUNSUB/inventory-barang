@@ -29,7 +29,6 @@
 
     tableBody.push(headersTitle.map(header => ({text: Array.isArray(header) ? header.join(' ') : header, style: 'tableHeader'})));
 
-    // Function to format number with commas for thousands
     function formatNumberWithCommas(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
@@ -39,12 +38,9 @@
             if (Array.isArray(header)) {
                 return `${formatNumberWithCommas(item[header[0]])} (${item[header[1]]})`;
             } else {
-                // Check if the header contains "harga"
                 if (header.toLowerCase().includes("harga")) {
-                    // Add "Rp" in front of the value and format with commas
                     return `Rp ${formatNumberWithCommas(item[header])}`;
                 } else {
-                    // Format the value with commas for thousands
                     return formatNumberWithCommas(item[header]);
                 }
             }

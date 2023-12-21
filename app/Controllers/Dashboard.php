@@ -39,7 +39,7 @@ class Dashboard extends Controller
             'date_range' => $date_range
         ];
         $data = [
-            'title' => 'Dashboard Page'
+            'title' => 'Dashboard'
         ];
         if (isset($id_barang) && isset($date_range)) {
             // Convert to yyyy-mm-dd format
