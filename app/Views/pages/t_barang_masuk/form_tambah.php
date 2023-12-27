@@ -9,7 +9,7 @@
         <div class="card-body row ">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="bm_kode" class="form-label">Kode Keluar</label>
+                    <label for="bm_kode" class="form-label">Kode Masuk</label>
                     <input type="text" class="form-control  " id="bm_kode" name="bm_kode"
                         value="<?= strtoupper('BM-' . $uuid) ?>" disabled>
                     <input type="text" class="form-control  " id="bm_kode" name="bm_kode"

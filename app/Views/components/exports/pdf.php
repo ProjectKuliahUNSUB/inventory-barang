@@ -40,17 +40,20 @@
             } else {
                 if (header.toLowerCase().includes("harga")) {
                     return `Rp ${formatNumberWithCommas(item[header])}`;
-                } else {
+                } if (header.toLowerCase().includes("jumlah") || header.toLowerCase().includes("total")) {
                     return formatNumberWithCommas(item[header]);
+                } else {
+                    return item[header]
                 }
             }
         });
         tableBody.push(row);
     });
 
-
+    const pageSize = {width: 595.276, height: 842.04};
     var docDefinition = {
         pageOrientation: 'landscape',
+        pageSize: pageSize,
         content: [
             {
                 text: 'Laporan Inventory Barang', style: {
@@ -76,6 +79,24 @@
                         return (rowIndex % 2 === 0) ? '#CCCCCC' : null;
                     },
                 },
+            },
+            '\n\n\n\n\n\n\n\n',
+
+            {
+                columns: [
+
+                    // Content on the left side of the column
+                    {
+                        width: '100%',
+                        text: [
+                            {text: '..................... , ..................................', alignment: 'right'},
+                            '\n\n\n\n',
+                            {text: '_________________________________', alignment: 'right'},
+                        ],
+                    },
+                    // Content on the right side of the column (for the actual signature and name line)
+
+                ],
             },
         ],
         styles: {
