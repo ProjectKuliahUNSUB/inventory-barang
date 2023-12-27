@@ -58,9 +58,10 @@ class Satuan extends Controller
 
         $data = [
             'nama_satuan' => $namaSatuan,
-            'keterangan_satuan' => $keteranganSatuan
+            'keterangan_satuan' => $keteranganSatuan,
+            'whitelist' => $this->request->getPost('whitelist_kb')
         ];
-        
+
         $result = $this->satuan_model->insertSatuan($data);
         if ($result) {
             return redirect()->to($this->role . '/satuan')->with('success', 'Nama satuan berhasil dibuat.');
@@ -90,6 +91,8 @@ class Satuan extends Controller
         $data = [
             'nama_satuan' => $this->request->getPost('nama_satuan'),
             'keterangan_satuan' => $this->request->getPost('keterangan_satuan'),
+            'whitelist' => $this->request->getPost('whitelist_kb')
+
         ];
 
         $result = $this->satuan_model->updateSatuan($this->request->getPost('id'), $data);

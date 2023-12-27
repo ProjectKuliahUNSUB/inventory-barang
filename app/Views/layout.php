@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,43 +18,36 @@
     <link rel="stylesheet" href="<?= base_url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/select2/css/select2.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css'); ?>">
     <script src="<?= base_url('plugins/echarts/echarts.min.js'); ?>"></script>
     <style>
         .bg-header {
             background: #363062;
         }
-
         .bg-sidebar {
             background: #FAF0E6 !important;
         }
-
         .text-header {
             color: #FAF0E6 !important;
         }
-
         .nav-pills .nav-link.active,
         .nav-pills .show>.nav-link {
             color: #fff;
             background-color: #435585 !important;
         }
-
         .bg-main-menu-selected-open {
             background: #eab2a0;
         }
-
         .bg-background-conten {
             background: #818fb4;
         }
-
         .bg-background-component {
             background: #363062;
         }
-
         .image-container {
             position: relative;
         }
-
-
         #loadingIndicator {
             display: none;
             position: absolute;
@@ -63,24 +55,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
-
         }
-
-
         #selectedImage {
             width: 200px;
             height: 250px;
         }
-
         .select2-container .select2-selection--single {
-
             /* height: 36px !important; */
             padding: 0 !important;
-
         }
     </style>
 </head>
-
 <body class="hold-transition   sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <div class="preloader bg-sidebar flex-column justify-content-center align-items-center">
@@ -95,7 +80,6 @@
         </aside>
         <div class="content-wrapper bg-background-conten">
             <div class="content-header">
-
                 <?= view('content-header') ?>
             </div>
             <section class="content">
@@ -127,7 +111,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     </div>
@@ -160,11 +143,34 @@
     <script src="<?= base_url('plugins/daterangepicker/daterangepicker.js'); ?>"></script>
     <script src="<?= base_url('plugins/select2/js/select2.full.min.js'); ?>"></script>
     <script src="<?= base_url('plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+    <script src="<?= base_url('plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'); ?>"></script>
     <script>
+        $(document).ready(function () {
+            var $select = $('select[name="id_satuan"]');
+            $('#nama_barang').on('input', function () {
+                var searchTerm = $(this).val().toLowerCase().trim();
+                $select.find('option').each(function () {
+                    var whitelist = ($(this).attr('wl') || '').toLowerCase();
+                    var optionText = $(this).text().toLowerCase();
+                    var whitelistArray = whitelist.split(',');
+                    var matches = whitelistArray.some(function (item) {
+                        return item.trim() !== '' && searchTerm.includes(item.toLowerCase().trim());
+                    });
+                    if (whitelist === '' || matches) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+        $('#whitelist_kb').tagsinput({
+            tagClass: 'badge bg-info',
+        });
+        $('.bootstrap-tagsinput').addClass('form-control');
         <?php
-        // Assuming $start_date is defined before this point or fetched from your model
-        $start_date = $sd ?? date('Y-m-d', strtotime('-30 days')); // Set a default value if $start_date is not defined
-        $end_date = $ed ?? date('Y-m-d'); // Set a default value if $start_date is not defined
+        $start_date = $sd ?? date('Y-m-d', strtotime('-30 days'));
+        $end_date = $ed ?? date('Y-m-d');
         ?>
         const currentURL = window.location.href;
         var start = moment('<?= $start_date ?>')
@@ -178,17 +184,11 @@
         $('#exportExcel').click(function () {
             var startDate = $('#date-dashboard').data('daterangepicker').startDate.format('YYYY-MM-DD');
             var endDate = $('#date-dashboard').data('daterangepicker').endDate.format('YYYY-MM-DD');
-
-            // Replace '/excel' with the actual URL you want to navigate to, and append the date parameters
             window.open(currentURL + '/excel?start_date=' + startDate + '&end_date=' + endDate, '_blank');
         });
-
-        // Add click event for the PDF button
         $('#exportPDF').click(function () {
             var startDate = $('#date-dashboard').data('daterangepicker').startDate.format('YYYY-MM-DD');
             var endDate = $('#date-dashboard').data('daterangepicker').endDate.format('YYYY-MM-DD');
-
-            // Replace '/pdf' with the actual URL you want to navigate to, and append the date parameters
             window.open(currentURL + '/pdf?start_date=' + startDate + '&end_date=' + endDate, '_blank');
         });
         var Toast = Swal.mixin({
@@ -251,7 +251,6 @@
                     },
                 ],
             }).buttons().container().appendTo('#table-main-mb_wrapper .col-md-6:eq(0)');
-
             $("#table-main").DataTable({
                 responsive: true,
                 lengthChange: false,
@@ -299,18 +298,12 @@
                 responsive: true,
                 lengthChange: false,
                 autoWidth: false,
-
                 initComplete: function () {
-                    // Append your button to the DataTable wrapper
                     var modalButton = '<button type="button" class="btn btn-default bg-warning" data-toggle="modal" data-target="#modal-default"><i class="fas fa-print"></i> Export</button>';
                     $('#table-main-laporan_wrapper .col-md-6:eq(0)').append(modalButton);
                 }
-
             }).buttons().container().appendTo('#table-main-laporan_wrapper .col-md-6:eq(0)');
-
         });
-
-        // const currentURL = window.location.href;
         const menuItems = document.querySelectorAll(".nav-item");
         for (const menuItem of menuItems) {
             const href = menuItem.querySelector("a").href;
@@ -334,13 +327,11 @@
             return segment !== '';
         });
         var breadcrumbList = document.getElementById('breadcrumb-list');
-        // var pathSoFar = '';
         var excludedKeywords = ['public', 'index.php', 'admin', 'operator'];
         for (var i = 0; i < pathSegments.length; i++) {
             if (excludedKeywords.some(keyword => pathSegments[i].includes(keyword))) {
                 continue;
             }
-            // pathSoFar += '/' + pathSegments[i];
             var listItem = document.createElement('li');
             var link = document.createElement('a');
             link.classList.add("breadcrumb-item");
@@ -357,7 +348,6 @@
                 link.classList.add("text-black");
                 link.classList.add("font-weight-bold");
             } else {
-                // link.href = pathSoFar;
                 link.classList.add("text-black");
             }
         }
@@ -367,7 +357,5 @@
             });
         }
     </script>
-
 </body>
-
 </html>

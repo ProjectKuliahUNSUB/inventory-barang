@@ -85,7 +85,6 @@
             {
                 columns: [
 
-                    // Content on the left side of the column
                     {
                         width: '100%',
                         text: [
@@ -94,7 +93,6 @@
                             {text: '_________________________________', alignment: 'right'},
                         ],
                     },
-                    // Content on the right side of the column (for the actual signature and name line)
 
                 ],
             },

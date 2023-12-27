@@ -21,6 +21,13 @@
                         name="keterangan_satuan"> <?= $dataSatuan['keterangan_satuan'] ?></textarea>
                 </div>
             </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="whitelist_kb" class="form-label">Kategori Barang</label>
+                    <input type="text" class="form-control" id="whitelist_kb" name="whitelist_kb"
+                        value="<?= $dataSatuan['whitelist'] ?>" data-role="tagsinput">
+                </div>
+            </div>
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
