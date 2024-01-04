@@ -112,6 +112,10 @@ class Users extends Controller
             'username' => $username,
             'role' => $role,
         ];
+        if ($this->request->getPost('password')) {
+            $password = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+            $userData['password'] = $password;
+        }
         $this->m_models->updateUser($this->request->getPost('id'), $userData);
         return redirect()->to($this->role . '/users')->with('success', 'Pengguna berhasil diperbarui.');
     }

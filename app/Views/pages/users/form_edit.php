@@ -6,7 +6,7 @@
             </h3>
         </div>
         <?= view('components/alerts') ?>
-        <?= form_open($role.'/users/update', ['enctype' => 'multipart/form-data']) ?>
+        <?= form_open($role . '/users/update', ['enctype' => 'multipart/form-data']) ?>
         <input type="text" value="<?= $dataUsers['id']; ?>" name="id" hidden>
         <div class="card-body row ">
             <div class="col-sm-4">
@@ -18,6 +18,11 @@
                 <div class="form-group">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" class="form-control" id="nama" value="<?= $dataUsers['nama']; ?>" name="nama">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" oninput="validatePassword()" id="password"
+                        name="password">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -38,12 +43,18 @@
                     </select>
 
                 </div>
+                <div class="form-group">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                        oninput="validatePassword()">
+                    <p id="passwordError" style="color: red;"></p>
+                </div>
             </div>
             <div class="col-sm-4 text-center d-flex justify-content-center align-items-center">
                 <input type="text" class="form-control" id="username" value="<?= $dataUsers['img']; ?>" name="imgBase64"
                     hidden>
                 <img id="selectedImage"
-                    src="<?= isset($dataUsers['img']) && !empty($dataUsers['img']) ? 'data:image/png;base64,'.$dataUsers['img'] : '//placehold.it/200x250'; ?>"
+                    src="<?= isset($dataUsers['img']) && !empty($dataUsers['img']) ? 'data:image/png;base64,' . $dataUsers['img'] : '//placehold.it/200x250'; ?>"
                     style="width: 200px; height: 250px;" alt="..." class="img-thumbnail rounded" />
                 <img id="loadingIndicator" src="<?= base_url('assets/loading.svg') ?>" height="60" width="60"
                     class="img-thumbnail rounded" />
@@ -60,6 +71,20 @@
     <!-- /.card -->
 </div>
 <script defer>
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        const passwordError = document.getElementById('passwordError');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (password !== confirmPassword) {
+            passwordError.textContent = 'Passwords do not match';
+            submitBtn.disabled = true;
+        } else {
+            passwordError.textContent = '';
+            submitBtn.disabled = false;
+        }
+    }
     function displayImage() {
         const fileInput = document.getElementById('customFile');
         const selectedImage = document.getElementById('selectedImage');
