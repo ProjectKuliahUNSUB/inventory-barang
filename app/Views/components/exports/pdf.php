@@ -1,5 +1,6 @@
 <script src="<?= base_url('plugins/pdfmake/pdfmake.min.js'); ?>"></script>
 <script src="<?= base_url('plugins/pdfmake/vfs_fonts.js'); ?>"></script>
+<?php setlocale(LC_TIME, 'id_ID'); ?>
 <script>
     var tableData = [];
     var jsonData = JSON.parse(JSON.stringify(<?= $data_table_json ?>))
@@ -88,7 +89,7 @@
                     {
                         width: '100%',
                         text: [
-                            {text: '..................... , ..................................', alignment: 'right'},
+                            {text: '............................ , <?= date('j F Y') ?>', alignment: 'right'},
                             '\n\n\n\n',
                             {text: '_________________________________', alignment: 'right'},
                         ],
